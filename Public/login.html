@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Parhle Fail Hojayega</title>
+</head>
+
+<body>
+
+    <div class="navibar workspace">
+        <a href="/home">
+            <div class="navBtn">Home</div>
+        </a>
+        <a href="/all">
+            <div class="navBtn">All notes</div>
+        </a>
+        <a href="/contact">
+            <div class="navBtn">Contact</div>
+        </a>
+        <a href="https://pwfh.ga/bot">
+            <div class="navBtn">Bot</div>
+        </a>
+    </div>
+
+    <div class="body workspace">
+        <div class="introHead">
+            <h1>Log in</h1>
+        </div>
+        <div class="content">
+            <form action="/login" method="POST" name="login">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+                <label for="password">Password</label>
+                <input name="password" type="password" id="password">
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+</body>
+</html>
