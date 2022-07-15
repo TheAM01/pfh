@@ -1,6 +1,6 @@
 import sec from "../sec.js";
 import db from "../database.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 
 async function login (req, res, ext) {
