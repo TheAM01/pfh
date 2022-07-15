@@ -1,10 +1,10 @@
 import db from './database.js'
 
-async function socketHandler (socket, io, store) {
+function socketHandler (socket, io, store) {
 
     socket.on('db_query', async (val) => {
         let queryResults = await db.get(val);
-        io.emit('db_query', queryResults);
+        await io.emit('db_query_result', queryResults);
     });
 
     socket.on('db_post', async (obj) => {
@@ -13,7 +13,7 @@ async function socketHandler (socket, io, store) {
     });
 
     socket.on('user_validation', async (obj) => {
-        console.log(store.sessions)
+        console.log('store')
     })
 
 }

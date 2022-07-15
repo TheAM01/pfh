@@ -87,6 +87,47 @@ img#buffer {
     width: 2.5%;
 }
 
+div.warning {
+    border: 1px #5f0200 solid;
+    background: #fc0b0388;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    display: block;
+    padding: 5px;
+    margin: auto;
+    width: 50%;
+}
+
+form.standardform {
+    border-radius: 10px;
+    display: block;
+    background: #6f6f6f55;
+    backdrop-filter: blur(15px);
+    text-align: center;
+    margin: 5%;
+    padding: 15px;
+}
+
+div.inputgroup {
+    display: block;
+    margin: 15% auto;
+    width: 70%;
+}
+
+label {
+    display: block;
+    margin: 15% auto;
+}
+
+input {
+    display: block;
+    margin: 5% auto;
+    border: solid 1px #1d1d1d;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 @keyframes buffer {
     from {
         transform: rotate(0deg);

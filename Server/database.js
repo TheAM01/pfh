@@ -3,4 +3,6 @@ import databaseUrlFetch from "./database-url.js";
 
 const dbUrl = await databaseUrlFetch();
 
-export default new Database(dbUrl);
+const db = new Database(dbUrl);
+
+export default db

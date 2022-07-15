@@ -7,29 +7,30 @@ import path from 'path';
 
 import createRoutes from "./Server/routes.js";
 import socketHandler from "./Server/socket-handler.js";
+import db from './Server/database.js'
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const dir = path.resolve()
 const store = new session.MemoryStore()
+const port = process.env.PORT || 3000;
+const secret = process.env.SECRET || "moshimoshi69420"
 
 app.use(express.static(dir + '/Public'));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
-    secret: 'moshimoshi',
+    secret: secret,
     cookie: {
-        maxAge: 1 * 60 * 60 * 1000
+        maxAge: 60 * 60 * 1000
     },
     saveUninitialized: false,
     store
 }))
 
-createRoutes(app, dir, {store});
-
-const port = process.env.PORT || 3000;
+createRoutes(app, dir, {store, io});
 
 server.listen(port, async () => {
     console.clear()

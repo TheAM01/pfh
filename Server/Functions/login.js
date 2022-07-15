@@ -1,33 +1,44 @@
 import sec from "../sec.js";
+import db from "../database.js";
+import bcrypt from "bcrypt";
 
 
-function login (req, res, ext) {
+async function login (req, res, ext) {
 
     console.log(req.body);
-    const {username, password} = req.body;
+    const {email, password} = req.body;
 
-    if (!username || !password) return res.sendStatus(401); //truthy
+    if (!email || !password) return res.redirect('/login?invalid_credentials=true'); //truthy
 
     if (req.session.authenticated) {
 
-        req.session.user = sec.createHash(username)
-        res.json(req.session); // bro is authy;
+        // req.session.user = sec.createHash(username)
+        // res.json(req.session); // bro is authy;
+        res.redirect('/home?unnecessary_login=true')
 
     } else {
 
-        if (authy(username, password)) {
+        if (await authy(email, password)) {
+
             req.session.authenticated = true;
-            req.session.user = sec.createHash(username)
-            res.json(req.session)
+            res.redirect('/home');
+
         } else {
-            res.send('wrong password!')
+            res.redirect('/login?wrong_password=true')
         }
     }
 
 }
 
-function authy (user, pass) {
-    if (user === 'Mueed' && sec.validateHash(pass, '1e427103330a7b55847b497fea27d03d3c9795b30f089468e6f9f26b0181d2ba')) return true;
+async function authy (email, pass) {
+    const users = await db.get('users');
+
+    const user = users.find(u => u.email === email);
+    if (!user) return false;
+
+    if ((user.email === email &&
+        bcrypt.compareSync(pass, user.password))) return true;
+
 }
 
 export default login

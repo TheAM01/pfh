@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="../style.css" rel="stylesheet">
+    <title>Parhle Fail Hojayega</title>
+</head>
+
+<body>
+
+    <div class="navibar workspace">
+        <a href="/home">
+            <div class="navBtn">Home</div>
+        </a>
+        <a href="/all">
+            <div class="navBtn">All notes</div>
+        </a>
+        <a href="/contact">
+            <div class="navBtn">Contact</div>
+        </a>
+        <a href="https://pwfh.ga/bot">
+            <div class="navBtn">Bot</div>
+        </a>
+        <a href="/profile">
+            <div class="navBtn" id="profilePreview"></div>
+        </a>
+    </div>
+
+    <div class="body workspace">
+        <div class="introHead">
+            <h1>Home</h1>
+        </div>
+        <div class="content">
+            <p>This website is dedicated to uploading notes and study material for class XII. You can find these notes and
+                affiliate stuff in the posts section. Navigate to there using the search option or by navigating manually.
+                This website will keep updating from time to time so don&rsquo;t worry if it is down.</p>
+            <div class="contentHead">
+                <h2>About the author</h2>
+            </div>
+            <p>Anyways, if you&rsquo;re here, you are probably looking for notes so start looking for notes from the menu on
+                the top.</p>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        validatePerson(io)
+    </script>
+
+</body>
+</html>
