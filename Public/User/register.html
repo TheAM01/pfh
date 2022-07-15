@@ -29,18 +29,28 @@
         <h1>Register</h1>
     </div>
     <div class="content">
-        <form action="/register" method="POST" name="login">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-            <label for="password">Password</label>
-            <input name="password" type="password" id="password">
-            <input type="submit" value="submit">
+        <form action="/register" method="POST" name="login" class="standardform">
+            <div class="inputgroup">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="standardinput">
+            </div>
+            <div class="inputgroup">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="standardinput">
+            </div>
+            <div class="inputgroup">
+                <label for="password">Password</label>
+                <input name="password" type="password" id="password" class="standardinput">
+            </div>
+            <button type="submit" name="submit" class="submitbutton">Register</button>
+            <a href="/login">Log in</a>
         </form>
     </div>
 </div>
-<script src="../script.js"></script>
+<script src="../script.js">
+    checkUrlParams('email_exists', 'Email already exists. Try logging in or chose another Email.')
+    checkUrlParams('username_exists', 'Username already exists. Try logging in or chose another username.')
+</script>
 <script src="/socket.io/socket.io.js"></script>
 
 </body>

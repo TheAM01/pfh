@@ -36,14 +36,15 @@
 
                 <div class="inputgroup">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
+                    <input type="email" id="email" name="email" class="standardinput">
                 </div>
                 <div class="inputgroup">
                     <label for="password">Password</label>
-                    <input name="password" type="password" id="password">
+                    <input name="password" type="password" id="password" class="standardinput">
                 </div>
 
                 <button type="submit" name="submit" class="submitbutton">Log in</button>
+                <a href="/register">Register</a>
 
             </form>
 
@@ -53,6 +54,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
         checkUrlParams('wrong_password', 'Email or password is incorrect. Try again.')
+        checkUrlParams('account_created', 'Account has been registered. Log in to your account.')
     </script>
 </body>
 </html>

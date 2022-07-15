@@ -14,10 +14,10 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    color: #ffffff;
     padding: 1%;
     margin: auto;
     font-family: 'Glory', sans-serif;
+    color: white;
 }
 
 .workspace {
@@ -115,17 +115,33 @@ div.inputgroup {
     width: 70%;
 }
 
+div#warning {
+    display: none;
+}
+
 label {
     display: block;
     margin: 15% auto;
 }
 
 input {
-    display: block;
     margin: 5% auto;
     border: solid 1px #1d1d1d;
     padding: 10px;
     border-radius: 10px;
+    background-color: #2e2e2e55;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+button[type=submit] {
+    margin: 5% auto;
+    border: solid 1px #1d1d1d;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: #ff9900aa;
 }
 
 @keyframes buffer {

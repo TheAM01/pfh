@@ -7,7 +7,6 @@ function routes (app, dir, ext) {
     dir += '/Public/'
 
     app.get('/', (req, res, next) => {
-        console.log(req.session)
         res.sendFile(dir + 'Static/home.html')
     });
 
@@ -26,9 +25,6 @@ function routes (app, dir, ext) {
 
     app.get('/login', (req, res, next) => {
         res.sendFile(dir + 'User/login.html');
-        if (req.query.wrong_password === "true") {
-            ext.io.emit('wrong_password')
-        }
     })
 
     app.get('/register', (req, res) => {

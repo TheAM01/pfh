@@ -25,19 +25,23 @@ function createNotesList (io) {
 function validatePerson (io) {
 
     const socket = io();
-    socket.emit('user_validation', '');
 
-    socket.on('user_validation', (data) => {
-        console.log('validated!')
+    socket.emit('user_validation', {});
+
+    socket.on('user_validation', (session) => {
+
     });
 
 }
 
 function checkUrlParams(param, errorMessage) {
+
     const params = new URLSearchParams(window.location.search);
-    if (params.get(param)) {
-        document.getElementById('warning').innerHTML=errorMessage
-    } else {
-        document.getElementById('warning').style.display = 'none'
+    const alertBox = document.getElementById('warning')
+
+    if (params.has(param)) {
+        alertBox.style.display = 'block';
+        return alertBox.innerHTML = errorMessage
     }
+
 }

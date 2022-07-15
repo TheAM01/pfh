@@ -16,19 +16,22 @@ const dir = path.resolve()
 const store = new session.MemoryStore()
 const port = process.env.PORT || 3000;
 const secret = process.env.SECRET || "moshimoshi69420"
-
-app.use(express.static(dir + '/Public'));
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+const sessionMiddleware = session({
     secret: secret,
     cookie: {
         maxAge: 60 * 60 * 1000
     },
     saveUninitialized: false,
     store
-}))
+});
+
+io.use(wrap(sessionMiddleware));
+app.use(express.static(dir + '/Public'));
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(sessionMiddleware)
 
 createRoutes(app, dir, {store, io});
 

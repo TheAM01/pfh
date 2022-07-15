@@ -1,5 +1,6 @@
 import db from './database.js'
 
+
 function socketHandler (socket, io, store) {
 
     socket.on('db_query', async (val) => {
@@ -13,7 +14,7 @@ function socketHandler (socket, io, store) {
     });
 
     socket.on('user_validation', async (obj) => {
-        console.log('store')
+        await io.emit(socket.request.session)
     })
 
 }

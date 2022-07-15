@@ -5,21 +5,23 @@ import bcrypt from "bcryptjs";
 
 async function login (req, res, ext) {
 
-    console.log(req.body);
+
     const {email, password} = req.body;
 
     if (!email || !password) return res.redirect('/login?invalid_credentials=true'); //truthy
 
     if (req.session.authenticated) {
 
-        // req.session.user = sec.createHash(username)
+        req.session.user = bcrypt.hashSync(email, 10);
         // res.json(req.session); // bro is authy;
+        req.session.authenticated = true;
         res.redirect('/home?unnecessary_login=true')
 
     } else {
 
         if (await authy(email, password)) {
 
+            req.session.user = bcrypt.hashSync(email, 10);
             req.session.authenticated = true;
             res.redirect('/home');
 
