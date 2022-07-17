@@ -16,9 +16,13 @@ function socketHandler (socket, io, store) {
 
     socket.on('user_validation', async (obj) => {
         if (!socket.handshake.headers.cookie) return await io.emit('user_validation', false)
-        let sessionId = socket.handshake.headers.cookie.split(' ')[1]
-            .replace('connect.sid=s%3A', '')
-            .split('.')[0];
+        let sessionId = socket.handshake.headers.cookie.split(' ')
+
+        sessionId = sessionId.find(c => c.startsWith("connect.sid"));
+
+        if (!sessionId) return await io.emit('user_validation', false);
+
+        sessionId = sessionId.replace('connect.sid=s%3A', '').split('.')[0];
 
         let trt = store.sessions[sessionId]
 
