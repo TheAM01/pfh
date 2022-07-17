@@ -22,8 +22,15 @@
         <a href="https://pwfh.ga/bot">
             <div class="navBtn">Bot</div>
         </a>
-        <a href="/profile">
-            <div class="navBtn" id="profilePreview"></div>
+        <a href="/login" class="user" id="loginbutton">
+            <div class="navBtn">
+                Login
+            </div>
+        </a>
+        <a href="/register" class="user" id="registerbutton">
+            <div class="navBtn" id="useroption">
+                Register
+            </div>
         </a>
     </div>
 
@@ -32,18 +39,34 @@
             <h1>Home</h1>
         </div>
         <div class="content">
-            <p>This website is dedicated to uploading notes and study material for class XII. You can find these notes and
-                affiliate stuff in the posts section. Navigate to there using the search option or by navigating manually.
-                This website will keep updating from time to time so don&rsquo;t worry if it is down.</p>
+            <p>This website is dedicated to uploading notes and study material for class XII. You can find these notes in the posts section.
+                Navigate to there using the search option or by navigating manually.
+                <h4>Note:</h4>
+                This website keeps updating from time to time so don&rsquo;t worry if it is down. Check down status or scheduled downtime on our
+            <a href="https://discord.gg/VJ8jHWTj4K">Discord server</a>.
+            </p>
             <div class="contentHead">
                 <h2>About the author</h2>
             </div>
             <p>Anyways, if you&rsquo;re here, you are probably looking for notes so start looking for notes from the menu on
-                the top.</p>
+                the top.
+            </p>
+            <div class="contentHead">
+                <h2>About the project</h2>
+            </div>
+            <p>
+                Parhle Warna Fail Hojayega, Parhle&semi; Fail Hojayega or PWFH for short, is a small-scale, self-hosted website made to provide free notes & resources to students.
+                Given the lack of resources and study material on the web, it is difficult to find sufficient amount of material to study.
+                The immediate solution would be to buy notes from a local store but PWFH solves this problem.
+                We provide free notes from trusted sources for absolute zero cost that can be downloaded from our server & then printed or just used to study digitally.
+                We protect you from the hassle of finding notes. We keep them sorted by category on our website where they can be accessed easily within seconds.
+                <a href="/login">Log in</a> or <a href="/register">sign up</a> to get studying or continue without an account.
+                Our resources include Practical Centre, Adamjee Coaching and several others. Check <a href="/sources">our sources</a> for a list of sources from where we obtain notes.
+            </p>
         </div>
     </div>
-    <script src="../script.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="../script.js"></script>
     <script type="text/javascript">
         validatePerson(io)
     </script>

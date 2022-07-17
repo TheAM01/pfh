@@ -37,7 +37,6 @@ createRoutes(app, dir, {store, io});
 
 server.listen(port, async () => {
     console.clear()
-    console.log(await db.get('users'))
     console.log(`Listening on port ${port}.`);
 });
 

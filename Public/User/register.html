@@ -9,51 +9,74 @@
 
 <body>
 
-<div class="navibar workspace">
-    <a href="/home">
-        <div class="navBtn">Home</div>
-    </a>
-    <a href="/all">
-        <div class="navBtn">All notes</div>
-    </a>
-    <a href="/contact">
-        <div class="navBtn">Contact</div>
-    </a>
-    <a href="https://pwfh.ga/bot">
-        <div class="navBtn">Bot</div>
-    </a>
-</div>
+    <div class="navibar workspace">
+        <a href="/home">
+            <div class="navBtn">Home</div>
+        </a>
+        <a href="/all">
+            <div class="navBtn">All notes</div>
+        </a>
+        <a href="/contact">
+            <div class="navBtn">Contact</div>
+        </a>
+        <a href="https://pwfh.ga/bot">
+            <div class="navBtn">Bot</div>
+        </a>
+        <a href="/login" class="user" id="loginbutton">
+            <div class="navBtn">
+                Login
+            </div>
+        </a>
+        <a href="/register" class="user" id="registerbutton">
+            <div class="navBtn" id="useroption">
+                Register
+            </div>
+        </a>
+    </div>
 
-<div class="body workspace">
-    <div class="introHead">
-        <h1>Register</h1>
+    <div class="body workspace">
+        <div class="introHead">
+            <h1>Register</h1>
+        </div>
+        <div class="content">
+            <form action="/register" method="POST" name="login" class="standardform">
+                <div class="inputgroup">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="standardinput">
+                </div>
+                <div class="inputgroup">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="standardinput">
+                </div>
+                <div class="inputgroup">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" id="password" class="standardinput">
+                </div>
+                <div class="inputgroup">
+                    Select your class
+                    <div class="tooltip">(i)
+                        <span class="tooltiptext">Does not affect accessibility to notes. We record this for analytical purposes.</span>
+                    </div>
+                </div>
+                <div class="radiogroup">
+                    <input type="radio" id="classxi" name="class" value="class_xi">
+                    <label for="classxi">Class XI (First year)</label>
+                    <input type="radio" id="classxii" name="class" value="class_xii">
+                    <label for="classxii">Class XII (Second year)</label>
+                </div>
+                <div class="buttonrow">
+                    <button type="submit" name="submit" class="submitbutton" id="register">Register</button><!--
+                     --><a href="/login" id="sbutton" class="relativelink">Log in</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="content">
-        <form action="/register" method="POST" name="login" class="standardform">
-            <div class="inputgroup">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" class="standardinput">
-            </div>
-            <div class="inputgroup">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="standardinput">
-            </div>
-            <div class="inputgroup">
-                <label for="password">Password</label>
-                <input name="password" type="password" id="password" class="standardinput">
-            </div>
-            <div class="buttonrow">
-                <button type="submit" name="submit" class="submitbutton" id="register">Register</button><!--
-                 --><a href="/login" id="sbutton" class="relativelink">Log in</a>
-            </div>
-        </form>
-    </div>
-</div>
-<script src="../script.js">
-    checkUrlParams('email_exists', 'Email already exists. Try logging in or chose another Email.')
-    checkUrlParams('username_exists', 'Username already exists. Try logging in or chose another username.')
-</script>
-<script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../script.js">
+        validatePerson(io)
+        checkUrlParams('email_exists', 'Email already exists. Try logging in or chose another Email.')
+        checkUrlParams('username_exists', 'Username already exists. Try logging in or chose another username.')
+    </script>
 
 </body>
 </html>

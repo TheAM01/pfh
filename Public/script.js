@@ -29,7 +29,11 @@ function validatePerson (io) {
     socket.emit('user_validation', {});
 
     socket.on('user_validation', (session) => {
-
+        if (session) {
+            document.getElementById('loginbutton').style.display = 'none';
+            document.getElementById('registerbutton').setAttribute('href', '/profile')
+            document.getElementById('useroption').innerHTML = "Profile"
+        }
     });
 
 }

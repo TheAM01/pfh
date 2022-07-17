@@ -1,4 +1,5 @@
 import db from './database.js'
+import session from "express-session";
 
 
 function socketHandler (socket, io, store) {
@@ -14,7 +15,17 @@ function socketHandler (socket, io, store) {
     });
 
     socket.on('user_validation', async (obj) => {
-        await io.emit(socket.request.session)
+        let sessionId = socket.handshake.headers.cookie.split(' ')[1]
+            .replace('connect.sid=s%3A', '')
+            .split('.')[0];
+
+        let trt = store.sessions[sessionId]
+
+        if (!trt) {
+            return await io.emit('user_validation', false);
+        } else {
+            return await io.emit('user_validation', true);
+        }
     })
 
 }

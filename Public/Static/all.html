@@ -22,6 +22,16 @@
         <a href="https://pwfh.ga/bot">
             <div class="navBtn">Bot</div>
         </a>
+        <a href="/login" class="user" id="loginbutton">
+            <div class="navBtn">
+                Login
+            </div>
+        </a>
+        <a href="/register" class="user" id="registerbutton">
+            <div class="navBtn" id="useroption">
+                Register
+            </div>
+        </a>
     </div>
     <div class="body workspace">
         <div class="introHead">
@@ -32,12 +42,11 @@
             <p id="allnotes"><img id = 'buffer' src="../Assets/buffering.png" alt="buffer"></p>
         </div>
     </div>
-    <script src="../script.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="../script.js"></script>
     <script>
-        console.log('creating list')
         createNotesList(io)
-        console.log('done')
+        validatePerson(io)
     </script>
 
 </body>

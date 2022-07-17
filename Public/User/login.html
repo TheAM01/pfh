@@ -22,6 +22,16 @@
         <a href="https://pwfh.ga/bot">
             <div class="navBtn">Bot</div>
         </a>
+        <a href="/login" class="user" id="loginbutton">
+            <div class="navBtn">
+                Login
+            </div>
+        </a>
+        <a href="/register" class="user" id="registerbutton">
+            <div class="navBtn" id="useroption">
+                Register
+            </div>
+        </a>
     </div>
 
     <div class="body workspace">
@@ -52,9 +62,10 @@
 
         </div>
     </div>
-    <script src="../script.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="../script.js"></script>
     <script type="text/javascript">
+        validatePerson(io)
         checkUrlParams('wrong_password', 'Email or password is incorrect. Try again.')
         checkUrlParams('account_created', 'Account has been registered. Log in to your account.');
         checkUrlParams('invalid_credentials', 'Credentials are invalid. Please check your username & password then try again.')

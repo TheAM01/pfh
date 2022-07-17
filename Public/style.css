@@ -56,12 +56,19 @@ div.body {
 div.navBtn:hover {
     background-color: #fc0b03;
     cursor: pointer;
+    color: #fff;
 }
 
 a {
     text-decoration: none;
-    color: #fff;
+    color: #ff3f39;
     transition: 0.6s;
+    font-weight: bold;
+}
+
+a.user {
+    display: flex;
+    float: right;
 }
 
 a.notes {
@@ -174,6 +181,37 @@ button#login, button#register {
 a#sbutton {
     margin: 0;
     text-align: center;
+}
+
+.tooltip {
+    color: #00d5ff;
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+.tooltiptext {
+    font: 15px 'Glory', sans-serif;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 @keyframes buffer {
