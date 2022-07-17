@@ -15,6 +15,7 @@ function socketHandler (socket, io, store) {
     });
 
     socket.on('user_validation', async (obj) => {
+        if (!socket.handshake.headers.cookie) return await io.emit('user_validation', false)
         let sessionId = socket.handshake.headers.cookie.split(' ')[1]
             .replace('connect.sid=s%3A', '')
             .split('.')[0];
