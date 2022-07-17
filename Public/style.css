@@ -109,11 +109,6 @@ form.standardform {
     padding: 15px;
 }
 
-div.inputgroup {
-    display: block;
-    margin: 15% auto;
-    width: 70%;
-}
 
 div#warning {
     display: none;
@@ -125,7 +120,6 @@ label {
 }
 
 input {
-    margin: 5% auto;
     border: solid 1px #1d1d1d;
     padding: 10px;
     border-radius: 10px;
@@ -136,12 +130,50 @@ input {
     font-weight: lighter;
 }
 
-button[type=submit] {
-    margin: 5% auto;
-    border: solid 1px #1d1d1d;
-    padding: 5px 20px;
+div.inputgroup {
+    display: block;
+    margin: 15% auto;
+    width: 70%;
+}
+
+input.standardinput {
+    display: block;
+    margin: 15% auto;
+    width: 80%;
+}
+
+div.buttonrow {
+    padding: 0;
+    margin: 15% auto;
     border-radius: 10px;
+    border: solid 1px #1d1d1d;
+    width: 200px;
+}
+
+button.submitbutton, a.relativelink {
+    display: inline-block;
+    padding: 5px 20px;
+    width: 50%;
+    box-sizing: border-box;
+    vertical-align: top;
+    position: relative;
+    font: 20px 'Glory', sans-serif;
+}
+
+button#login, button#register {
+    margin: 0;
+    border-radius: 10px;
+    border-right: solid 1px #1d1d1d;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 0;
     background-color: #ff9900aa;
+    font-weight: bolder;
+}
+
+a#sbutton {
+    margin: 0;
+    text-align: center;
 }
 
 @keyframes buffer {

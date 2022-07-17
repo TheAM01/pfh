@@ -43,8 +43,10 @@
                     <input name="password" type="password" id="password" class="standardinput">
                 </div>
 
-                <button type="submit" name="submit" class="submitbutton">Log in</button>
-                <a href="/register">Register</a>
+                <div class="buttonrow">
+                 <button type="submit" name="submit" class="submitbutton" id="login">Log in</button><!--
+                 --><a href="/register" id="sbutton" class="relativelink">Register</a>
+                </div>
 
             </form>
 
@@ -54,7 +56,8 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
         checkUrlParams('wrong_password', 'Email or password is incorrect. Try again.')
-        checkUrlParams('account_created', 'Account has been registered. Log in to your account.')
+        checkUrlParams('account_created', 'Account has been registered. Log in to your account.');
+        checkUrlParams('invalid_credentials', 'Credentials are invalid. Please check your username & password then try again.')
     </script>
 </body>
 </html>
