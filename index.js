@@ -40,6 +40,7 @@ server.listen(port, async () => {
     console.log(`Listening on port ${port}.`);
 });
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
+    console.log(await db.list())
     socketHandler(socket, io, store)
 });

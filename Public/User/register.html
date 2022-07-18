@@ -3,76 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Parhle Fail Hojayega</title>
 </head>
 
 <body>
 
-    <div class="navibar workspace">
+    <div class="navi_bar workspace">
         <a href="/home">
-            <div class="navBtn">Home</div>
+            <div class="nav_btn">Home</div>
         </a>
         <a href="/all">
-            <div class="navBtn">All notes</div>
+            <div class="nav_btn">All notes</div>
         </a>
         <a href="/contact">
-            <div class="navBtn">Contact</div>
+            <div class="nav_btn">Contact</div>
         </a>
         <a href="https://pwfh.ga/bot">
-            <div class="navBtn">Bot</div>
+            <div class="nav_btn">Bot</div>
         </a>
-        <a href="/login" class="user" id="loginbutton">
-            <div class="navBtn">
+        <a href="/login" class="user" id="login_button">
+            <div class="nav_btn">
                 Login
             </div>
         </a>
-        <a href="/register" class="user" id="registerbutton">
-            <div class="navBtn" id="useroption">
+        <a href="/register" class="user" id="register_button">
+            <div class="nav_btn" id="user_option">
                 Register
             </div>
         </a>
     </div>
 
     <div class="body workspace">
-        <div class="introHead">
+        <div class="intro_head">
             <h1>Register</h1>
         </div>
         <div class="content">
-            <form action="/register" method="POST" name="login" class="standardform">
-                <div class="inputgroup">
+            <form action="/register" method="POST" name="login" class="standard_form">
+                <div class="input_group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" class="standardinput">
+                    <input type="text" id="username" name="username" class="standard_input">
                 </div>
-                <div class="inputgroup">
+                <div class="input_group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="standardinput">
+                    <input type="email" id="email" name="email" class="standard_input">
                 </div>
-                <div class="inputgroup">
+                <div class="input_group">
                     <label for="password">Password</label>
-                    <input name="password" type="password" id="password" class="standardinput">
+                    <input name="password" type="password" id="password" class="standard_input">
                 </div>
-                <div class="inputgroup">
+
+                <div class="input_group">
                     Select your class
                     <div class="tooltip">(i)
-                        <span class="tooltiptext">Does not affect accessibility to notes. We record this for analytical purposes.</span>
+                        <span class="tooltip_text">Does not affect accessibility to notes. We record this for analytical purposes.</span>
                     </div>
                 </div>
-                <div class="radiogroup">
-                    <input type="radio" id="classxi" name="class" value="class_xi">
-                    <label for="classxi">Class XI (First year)</label>
-                    <input type="radio" id="classxii" name="class" value="class_xii">
-                    <label for="classxii">Class XII (Second year)</label>
+
+                <div class="radio_group">
+
+                    <input type="radio" id="grade_xi" name="grade" value="grade_xi" class="radio_input">
+                    <label for="grade_xi" class="radio_label">Class XI (First year)</label>
+
+                    <input type="radio" id="grade_xii" name="grade" value="grade_xii" class="radio_input">
+                    <label for="grade_xii" class="radio_label">Class XII (Second year)</label>
+
                 </div>
-                <div class="buttonrow">
-                    <button type="submit" name="submit" class="submitbutton" id="register">Register</button><!--
-                     --><a href="/login" id="sbutton" class="relativelink">Log in</a>
+
+                <div class="button_row">
+                    <button type="submit" name="submit" class="submit_button" id="register">Register</button><!--
+                     --><a href="/login" id="s_button" class="relative_link">Log in</a>
                 </div>
             </form>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="../script.js">
+    <script src="/script.js">
         validatePerson(io)
         checkUrlParams('email_exists', 'Email already exists. Try logging in or chose another Email.')
         checkUrlParams('username_exists', 'Username already exists. Try logging in or chose another username.')

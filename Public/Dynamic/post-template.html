@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Parhle Fail Hojayega</title>
 </head>
 
 <body>
+
     <div class="navi_bar workspace">
         <a href="/home">
             <div class="nav_btn">Home</div>
@@ -33,21 +33,21 @@
             </div>
         </a>
     </div>
+
     <div class="body workspace">
         <div class="intro_head">
-            <h1>All notes</h1>
+            <h1 id="page_heading"></h1>
         </div>
         <div class="content">
-            This page contains links to all the notes available on this website.
-            <p id="all_notes"><img id = 'buffer' src="../Assets/buffering.png" alt="buffer"></p>
+            <div id="notes_container">
+
+            </div>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>
-    <script>
-        createNotesList(io)
-        validatePerson(io)
+    <script type="text/javascript">
+        getFiles(io);
     </script>
-
 </body>
 </html>

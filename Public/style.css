@@ -29,7 +29,7 @@ body {
     font-size: 20px;
 }
 
-div.navibar {
+div.navi_bar {
     /* border: solid #000000 3px; */
     padding: 0;
     width: 91%;
@@ -45,7 +45,7 @@ div.body {
     margin-top: 20px;
 }
 
-.navBtn {
+.nav_btn {
     display: inline-block;
     padding: 10px;
     /* border: #000000 solid 1px; */
@@ -53,7 +53,7 @@ div.body {
     transition: 0.8s;
 }
 
-div.navBtn:hover {
+div.nav_btn:hover {
     background-color: #fc0b03;
     cursor: pointer;
     color: #fff;
@@ -61,7 +61,7 @@ div.navBtn:hover {
 
 a {
     text-decoration: none;
-    color: #ff3f39;
+    color: #FF544D;
     transition: 0.6s;
     font-weight: bold;
 }
@@ -80,7 +80,7 @@ a.notes {
 
 a.notes:hover {
     font-weight: bolder;
-    color: #ff7a75;
+    color: #FF544D;
 }
 
 div.body.workspace * {
@@ -106,7 +106,7 @@ div.warning {
     width: 50%;
 }
 
-form.standardform {
+form.standard_form {
     border-radius: 10px;
     display: block;
     background: #6f6f6f55;
@@ -137,19 +137,23 @@ input {
     font-weight: lighter;
 }
 
-div.inputgroup {
+button:hover {
+    cursor: pointer;
+}
+
+div.input_group {
     display: block;
     margin: 15% auto;
     width: 70%;
 }
 
-input.standardinput {
+input.standard_input {
     display: block;
     margin: 15% auto;
     width: 80%;
 }
 
-div.buttonrow {
+div.button_row {
     padding: 0;
     margin: 15% auto;
     border-radius: 10px;
@@ -157,7 +161,7 @@ div.buttonrow {
     width: 200px;
 }
 
-button.submitbutton, a.relativelink {
+button.submit_button, a.relative_link {
     display: inline-block;
     padding: 5px 20px;
     width: 50%;
@@ -174,11 +178,11 @@ button#login, button#register {
     border-top: 0;
     border-left: 0;
     border-bottom: 0;
-    background-color: #ff9900aa;
+    background-color: #ff3f39;
     font-weight: bolder;
 }
 
-a#sbutton {
+a#s_button {
     margin: 0;
     text-align: center;
 }
@@ -190,7 +194,7 @@ a#sbutton {
     border-bottom: 1px dotted black;
 }
 
-.tooltip .tooltiptext {
+.tooltip .tooltip_text {
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -206,12 +210,58 @@ a#sbutton {
     left: 50%;
     margin-left: -60px;
 }
-.tooltiptext {
+
+.tooltip_text {
     font: 15px 'Glory', sans-serif;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltip_text {
     visibility: visible;
+}
+
+.radio_group {
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 1px 1px #5e5e5e5e;
+    padding: 0;
+    margin-bottom: 4% !important;
+}
+
+.radio_input {
+    display: none;
+}
+
+.radio_label {
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #FF544D;
+    transition: background-color 0.3s;
+    margin: 0 !important;
+    border: 1px solid #ff544d;
+}
+
+.radio_label:not(:last-of-type) {
+    border-right: 1px solid #ff3f39;
+}
+
+.radio_input:checked + .radio_label {
+    background: #ff3f39;
+}
+
+.notes_image {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+#notes_container {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #00000055;
 }
 
 @keyframes buffer {

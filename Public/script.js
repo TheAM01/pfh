@@ -18,7 +18,7 @@ function createNotesList (io) {
             finalArr.push(`${item.index}. <a href='/${item.href}' class='notes'>${item.name}</a>`)
         });
 
-        document.getElementById('allnotes').innerHTML = finalArr.join('<br>');
+        document.getElementById('all_notes').innerHTML = finalArr.join('<br>');
     });
 }
 
@@ -30,9 +30,9 @@ function validatePerson (io) {
 
     socket.on('user_validation', (session) => {
         if (session) {
-            document.getElementById('loginbutton').style.display = 'none';
-            document.getElementById('registerbutton').setAttribute('href', '/profile')
-            document.getElementById('useroption').innerHTML = "Profile"
+            document.getElementById('login_button').style.display = 'none';
+            document.getElementById('register_button').setAttribute('href', '/profile')
+            document.getElementById('user_option').innerHTML = "Profile"
         }
     });
 
@@ -47,5 +47,25 @@ function checkUrlParams(param, errorMessage) {
         alertBox.style.display = 'block';
         return alertBox.innerHTML = errorMessage
     }
+
+}
+
+function getFiles(io) {
+
+    const socket = io();
+
+    socket.emit('request_file');
+    socket.on('request_file', (data) => {
+
+        document.getElementById('page_heading').innerHTML = data.name;
+
+        const anchors = [];
+
+        data.images.forEach((img, index) => {
+            anchors.push(`<img src="${img}" class="notes_image" alt="Resource image ${index}">`)
+        });
+
+        document.getElementById('notes_container').innerHTML = anchors.join('\n');
+    });
 
 }

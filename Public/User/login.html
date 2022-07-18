@@ -3,59 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Parhle Fail Hojayega</title>
 </head>
 
 <body>
 
-    <div class="navibar workspace">
+    <div class="navi_bar workspace">
         <a href="/home">
-            <div class="navBtn">Home</div>
+            <div class="nav_btn">Home</div>
         </a>
         <a href="/all">
-            <div class="navBtn">All notes</div>
+            <div class="nav_btn">All notes</div>
         </a>
         <a href="/contact">
-            <div class="navBtn">Contact</div>
+            <div class="nav_btn">Contact</div>
         </a>
         <a href="https://pwfh.ga/bot">
-            <div class="navBtn">Bot</div>
+            <div class="nav_btn">Bot</div>
         </a>
-        <a href="/login" class="user" id="loginbutton">
-            <div class="navBtn">
+        <a href="/login" class="user" id="login_button">
+            <div class="nav_btn">
                 Login
             </div>
         </a>
-        <a href="/register" class="user" id="registerbutton">
-            <div class="navBtn" id="useroption">
+        <a href="/register" class="user" id="register_button">
+            <div class="nav_btn" id="user_option">
                 Register
             </div>
         </a>
     </div>
 
     <div class="body workspace">
-        <div class="introHead">
+        <div class="intro_head">
             <h1>Log in</h1>
         </div>
         <div class="content">
 
             <div class="warning" id="warning"></div>
 
-            <form action="/login" method="POST" name="login" class="standardform">
+            <form action="/login" method="POST" name="login" class="standard_form">
 
-                <div class="inputgroup">
+                <div class="input_group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="standardinput">
+                    <input type="email" id="email" name="email" class="standard_input">
                 </div>
-                <div class="inputgroup">
+                <div class="input_group">
                     <label for="password">Password</label>
-                    <input name="password" type="password" id="password" class="standardinput">
+                    <input name="password" type="password" id="password" class="standard_input">
                 </div>
 
-                <div class="buttonrow">
-                 <button type="submit" name="submit" class="submitbutton" id="login">Log in</button><!--
-                 --><a href="/register" id="sbutton" class="relativelink">Register</a>
+                <div class="button_row">
+                 <button type="submit" name="submit" class="submit_button" id="login">Log in</button><!--
+                 --><a href="/register" id="s_button" class="relative_link">Register</a>
                 </div>
 
             </form>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="../script.js"></script>
+    <script src="/script.js"></script>
     <script type="text/javascript">
         validatePerson(io)
         checkUrlParams('wrong_password', 'Email or password is incorrect. Try again.')

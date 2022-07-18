@@ -4,10 +4,11 @@ import db from "./database.js";
 
 class User {
 
-    constructor(username, email, password) {
+    constructor(username, email, password, grade) {
         this.username = username;
         this.email = email;
         this.password = bcrypt.hashSync(password, 10)
+        this.grade = grade
     }
 
     async register () {
