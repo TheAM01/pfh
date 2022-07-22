@@ -15,10 +15,21 @@ function createNotesList (io) {
         let finalArr = []
 
         Array.from(physArr).forEach((item) => {
+
             finalArr.push(`${item.index}. <a href='/${item.href}' class='notes'>${item.name}</a>`)
+
+            // Another way using DOM append.
+
+            // const anchor = document.createElement('a');
+            // anchor.setAttribute('href', `/${item.href}`)
+            // anchor.setAttribute('class', 'notes')
+            // anchor.textContent = item.name;
+            // document.getElementById('all_notes').appendChild(anchor);
+
         });
 
         document.getElementById('all_notes').innerHTML = finalArr.join('<br>');
+
     });
 }
 

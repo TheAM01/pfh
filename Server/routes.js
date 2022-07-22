@@ -70,8 +70,14 @@ function routes (app, dir, ext) {
         res.sendFile(dir + 'Static/not-found.html')
     });
 
-    app.get('/pdfs/sample', (req, res) => {
-        res.sendFile(dir + 'Dynamic/sample_pdf.pdf')
+    app.get('/cdn/:file', (req, res) => {
+
+        const path = `${dir}Assets/${req.params.file}`
+        if (fs.existsSync(path)) {
+            return res.sendFile(path)
+        }
+        res.sendStatus(404);
+
     })
 
     app.use((req, res) => {

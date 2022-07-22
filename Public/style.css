@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Glory:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 
 /*<a href="https://www.flaticon.com/free-icons/buffering" title="buffering icons">Buffering icons created by muhammad atho' - Flaticon</a>*/
 
@@ -8,16 +10,21 @@
 }
 
 body {
-    /* background: #2e2e2e; */
-    background-image: url('https://i.imgur.com/c7YTOei.png');
-    background-repeat: no-repeat;
+    /*https://i.imgur.com/c7YTOei.png*/
     background-size: cover;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-position: center;
+    background-image: url('/cdn/background_01.png');
+    background-attachment: fixed;
     padding: 1%;
     margin: auto;
     font-family: 'Glory', sans-serif;
     color: white;
+}
+
+p {
+    margin-bottom: 20px;
+    margin-top: 5px;
 }
 
 .workspace {
@@ -27,27 +34,33 @@ body {
     border: solid #000000 1px;
     width: 90%;
     font-size: 20px;
+    border-radius: 10px;
+    padding: 7px;
+    margin: 20px auto;
 }
 
 div.navi_bar {
+    font-size: 0;
+    background: #1d1d1d7a;
+    backdrop-filter: blur(7px);
+    box-shadow: 1px 1px #0000009b;
+    border: solid #000000 1px;
+    width: 90%;
     /* border: solid #000000 3px; */
-    padding: 0;
-    width: 91%;
-    margin: auto;
+    padding: 0 7px;
     border-radius: 10px;
+    display: table;
+    margin: 30px auto auto auto;
 }
 
 div.body {
     /* border: solid #000000 1px; */
-    border-radius: 10px;
-    padding: 7px;
-    margin: auto;
-    margin-top: 20px;
 }
 
 .nav_btn {
-    display: inline-block;
-    padding: 10px;
+    font-size: 20px;
+    display: inline-flex;
+    padding: 7px;
     /* border: #000000 solid 1px; */
     margin: 0;
     transition: 0.8s;
@@ -59,6 +72,29 @@ div.nav_btn:hover {
     color: #fff;
 }
 
+div.logo_container {
+    text-decoration: #ffffff underline;
+    font-family: 'Roboto Slab', serif;
+    box-shadow: 1px 1px #0000009b;
+    backdrop-filter: blur(7px);
+    border: solid #000000 1px;
+    box-sizing: border-box;
+    background: #1d1d1d7a;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px auto;
+    transition: 0.5s;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ffffff;
+    width: 400px;
+    padding: 5px;
+}
+
+div.logo_container:hover {
+    box-shadow: 2px 2px #0000009b;
+}
+
 a {
     text-decoration: none;
     color: #FF544D;
@@ -67,8 +103,8 @@ a {
 }
 
 a.user {
-    display: flex;
-    float: right;
+    position: relative;
+    float: right !important;
 }
 
 a.notes {

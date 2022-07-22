@@ -41,6 +41,21 @@ server.listen(port, async () => {
 });
 
 io.on('connection', async (socket) => {
-    console.log(await db.list())
+    let list = {};
+    let exercises = await db.list('xi_math');
+
+    console.log('Initializing...')
+
+    for (let i = 0; i < exercises.length; i++) {
+        let stuff = await db.get(exercises[i])
+        list[exercises[i]] = {
+                id: exercises[i],
+                name: stuff.name,
+                images: stuff.normals,
+                source: stuff.url
+        }
+    }
+    await db.set('list_beta', list)
+    console.log(list)
     socketHandler(socket, io, store)
 });
