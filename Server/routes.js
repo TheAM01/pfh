@@ -38,7 +38,6 @@ function routes (app, dir, ext) {
     });
 
     app.post('/register', async (req, res) => {
-        return console.log(req.body)
         await register(req, res);
     })
 
