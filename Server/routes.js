@@ -47,7 +47,7 @@ function routes (app, dir, ext) {
     //     res.sendStatus(200)
     // });
 
-    app.get('/:grade/:subject/:index', async (req, res) => {
+    app.get('/notes/:grade/:subject/:index', async (req, res) => {
 
         let {grade, subject, index} = req.params;
         grade = grade.toLowerCase();
@@ -60,14 +60,16 @@ function routes (app, dir, ext) {
 
         res.sendFile(dir + 'Dynamic/post-template.html')
 
-        await ext.io.on('connection', socket => {
+        ext.io.on('connection', socket => {
 
             socket.on('request_file', () => {
-              ext.io.emit('request_file', item);
-            })
+                item.subject = subject;
+                item.grade = grade;
+                ext.io.emit('request_file', item);
+            });
+
         });
-        return console.log(req.params);
-        res.sendFile(dir + 'Static/not-found.html')
+
     });
 
     app.get('/cdn/:file', (req, res) => {

@@ -1,3 +1,7 @@
+String.prototype.capitalizeInitial = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 function test () {
     console.log("Hello, Wilson!")
 }
@@ -5,28 +9,32 @@ function test () {
 function createNotesList (io) {
 
     const socket = io()
-    socket.emit('db_query', 'notes_metadata');
+    socket.emit('db_query', 'list_alpha');
 
 
     socket.on('db_query_result', val => {
 
-        let physArr = val
-
+        let list = val
         let finalArr = []
+        let arr = Object.values(list)
 
-        Array.from(physArr).forEach((item) => {
+        for (let i=0; i<arr.length; i++) {
 
-            finalArr.push(`${item.index}. <a href='/${item.href}' class='notes'>${item.name}</a>`)
+            const item = arr[i];
+
+            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
+
+            finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
 
             // Another way using DOM append.
 
             // const anchor = document.createElement('a');
-            // anchor.setAttribute('href', `/${item.href}`)
+            // anchor.setAttribute('href', `/notes/${item.id.replace(/_/g, '/')}`)
             // anchor.setAttribute('class', 'notes')
-            // anchor.textContent = item.name;
+            // anchor.textContent = heading
             // document.getElementById('all_notes').appendChild(anchor);
 
-        });
+        }
 
         document.getElementById('all_notes').innerHTML = finalArr.join('<br>');
 
@@ -68,13 +76,17 @@ function getFiles(io) {
     socket.emit('request_file');
     socket.on('request_file', (data) => {
 
-        document.getElementById('page_heading').innerHTML = data.name;
+        const heading = `${data.grade.toUpperCase()} ${data.subject.capitalizeInitial()} ${data.name.replace(/_/g, ' ').capitalizeInitial()}`
+
+        document.getElementById('page_heading').innerHTML = heading;
 
         const anchors = [];
 
         data.images.forEach((img, index) => {
             anchors.push(`<img src="${img}" class="notes_image" alt="Resource image ${index}">`)
         });
+
+        anchors.push(`<a href="${data.url}" class="credits_link">Source</a>`)
 
         document.getElementById('notes_container').innerHTML = anchors.join('\n');
     });

@@ -36,26 +36,40 @@ app.use(sessionMiddleware)
 createRoutes(app, dir, {store, io});
 
 server.listen(port, async () => {
+
     console.clear()
+    console.log('Initializing...')
     console.log(`Listening on port ${port}.`);
+
 });
 
 io.on('connection', async (socket) => {
-//     let list = {};
-//     let exercises = await db.list('xi_math');
-//
-//     console.log('Initializing...')
-//
-//     for (let i = 0; i < exercises.length; i++) {
-//         let stuff = await db.get(exercises[i])
-//         list[exercises[i]] = {
-//                 id: exercises[i],
-//                 name: stuff.name,
-//                 images: stuff.normals,
-//                 source: stuff.url
-//         }
-//     }
-//     await db.set('list_beta', list)
-//     console.log(list)
     socketHandler(socket, io, store)
+    // console.log(await db.get('xi_maths_10.3'))
+    // return console.log(await db.get('list_alpha'))
+    //
+    // let list = await db.get('list_alpha');
+    // let exercises = await db.list('xi_chem');
+    //
+    // console.log('Initializing list creation for chem...')
+    //
+    // for (let i = 0; i < exercises.length; i++) {
+    //
+    //     let stuff = await db.get(exercises[i]);
+    //
+    //     list[exercises[i].replace('.', '_')] = {
+    //
+    //         id: exercises[i],
+    //         grade: exercises[i].split('_')[0],
+    //         subject: exercises[i].split('_')[1],
+    //         name: stuff.name.replace(/\s/g, ""),
+    //         images: stuff.normals,
+    //         source: stuff.url
+    //
+    //     }
+    // }
+    // console.log(list)
+    // await db.set('list_alpha', list)
+
+
 });

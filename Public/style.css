@@ -35,8 +35,9 @@ p {
     width: 90%;
     font-size: 20px;
     border-radius: 10px;
-    padding: 7px;
+    padding: 2%;
     margin: 20px auto;
+    box-sizing: border-box;
 }
 
 div.navi_bar {
@@ -117,6 +118,13 @@ a.notes {
 a.notes:hover {
     font-weight: bolder;
     color: #FF544D;
+}
+
+a.credits_link {
+    width: 10%;
+    text-align: center;
+    margin: auto;
+    display: block;
 }
 
 div.body.workspace * {
@@ -288,8 +296,8 @@ a#s_button {
 
 .notes_image {
     display: flex;
-    width: 90%;
-    margin: auto;
+    width: 80%;
+    margin: 20px auto 15px auto;
 }
 
 #notes_container {
