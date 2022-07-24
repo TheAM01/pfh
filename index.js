@@ -44,8 +44,38 @@ server.listen(port, async () => {
 });
 
 io.on('connection', async (socket) => {
+
     socketHandler(socket, io, store)
-    // console.log(await db.get('xi_maths_10.3'))
+
+    let chem = await db.list('xi_chem');
+    const chapter3 = {
+        name: 'chapter 3',
+        url: 'http://practicalcentre.blogspot.com/2015/12/the-atomic-structure-theory-and-numericals-chemistry-xi.html',
+        normals: 17,
+        subject: 'Chemistry',
+        grade: 'XI',
+        images: [
+            'https://i.imgur.com/FCZjGm1.png',
+            'https://i.imgur.com/FJWE8Do.png',
+            'https://i.imgur.com/1z3R8sN.png',
+            'https://i.imgur.com/NKwQxOz.png',
+            'https://i.imgur.com/hxcaxJ6.png',
+            'https://i.imgur.com/0p7qvQO.png',
+            'https://i.imgur.com/1CEOuTu.png',
+            'https://i.imgur.com/Uljlif5.png',
+            'https://i.imgur.com/YJasIJh.png',
+            'https://i.imgur.com/Y4VBLkd.png',
+            'https://i.imgur.com/OyKkzYO.png',
+            'https://i.imgur.com/qv1RSmk.png',
+            'https://i.imgur.com/l51BreG.png',
+            'https://i.imgur.com/HxIrW25.png',
+            'https://i.imgur.com/l7tw673.png',
+            'https://i.imgur.com/2aqS3gi.png',
+            'https://i.imgur.com/bHVz3Py.png'
+        ]
+    }
+    await db.set('xi_chem_3', chapter3);
+    console.log(await db.get('xi_chem_3'))
     // return console.log(await db.get('list_alpha'))
     //
     // let list = await db.get('list_alpha');
