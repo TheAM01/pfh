@@ -46,16 +46,20 @@ server.listen(port, async () => {
 io.on('connection', async (socket) => {
 
     socketHandler(socket, io, store)
+    await onload();
 
+});
+
+async function onload () {
     let chem = await db.list('xi_chem');
     const chapter3 = {
         name: 'chapter 3',
-        url: 'http://practicalcentre.blogspot.com/2015/12/the-atomic-structure-theory-and-numericals-chemistry-xi.html',
+        url: '/notes/xi/chem/3',
         normals: 17,
         subject: 'Chemistry',
         grade: 'XI',
         images: [
-            'https://i.imgur.com/FCZjGm1.png',
+            'https://i.ibb.co/G9NckYr/IMG-20220609-001249-756.jpg',
             'https://i.imgur.com/FJWE8Do.png',
             'https://i.imgur.com/1z3R8sN.png',
             'https://i.imgur.com/NKwQxOz.png',
@@ -100,6 +104,4 @@ io.on('connection', async (socket) => {
     // }
     // console.log(list)
     // await db.set('list_alpha', list)
-
-
-});
+}

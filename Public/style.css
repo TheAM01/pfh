@@ -27,7 +27,11 @@ p {
     margin-top: 5px;
 }
 
-.workspace {
+/*
+    Modifying division tags
+*/
+
+div.workspace {
     background: #1d1d1d7a;
     backdrop-filter: blur(7px);
     box-shadow: 1px 1px #0000009b;
@@ -52,13 +56,15 @@ div.navi_bar {
     border-radius: 10px;
     display: table;
     margin: 30px auto auto auto;
+    box-sizing: border-box;
 }
 
-div.body {
-    /* border: solid #000000 1px; */
+div.sub_content {
+    color: #a1a1a1;
+    font-weight: bolder;
 }
 
-.nav_btn {
+div.nav_btn {
     font-size: 20px;
     display: inline-flex;
     padding: 7px;
@@ -96,6 +102,39 @@ div.logo_container:hover {
     box-shadow: 2px 2px #0000009b;
 }
 
+div.body.workspace * {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+div.warning {
+    border: 1px #5f0200 solid;
+    background: #fc0b0388;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    display: block;
+    padding: 5px;
+    margin: auto;
+    width: 50%;
+}
+
+div#warning {
+    display: none;
+}
+
+div.button_row {
+    padding: 0;
+    margin: 15% auto;
+    border-radius: 10px;
+    border: solid 1px #1d1d1d;
+    width: 200px;
+}
+
+/*
+    Modifying anchor tags
+*/
+
 a {
     text-decoration: none;
     color: #FF544D;
@@ -127,27 +166,11 @@ a.credits_link {
     display: block;
 }
 
-div.body.workspace * {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
 
 img#buffer {
     animation: buffer infinite 2s linear;
     margin-left: 5%;
     width: 2.5%;
-}
-
-div.warning {
-    border: 1px #5f0200 solid;
-    background: #fc0b0388;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 15px;
-    display: block;
-    padding: 5px;
-    margin: auto;
-    width: 50%;
 }
 
 form.standard_form {
@@ -161,9 +184,6 @@ form.standard_form {
 }
 
 
-div#warning {
-    display: none;
-}
 
 label {
     display: block;
@@ -195,14 +215,6 @@ input.standard_input {
     display: block;
     margin: 15% auto;
     width: 80%;
-}
-
-div.button_row {
-    padding: 0;
-    margin: 15% auto;
-    border-radius: 10px;
-    border: solid 1px #1d1d1d;
-    width: 200px;
 }
 
 button.submit_button, a.relative_link {
@@ -298,6 +310,30 @@ a#s_button {
     display: flex;
     width: 80%;
     margin: 20px auto 15px auto;
+    transition: 0.5s;
+}
+
+span.line {
+    display: block;
+    margin-top: 10px;
+}
+
+span.emphasize {
+    text-decoration: white underline;
+}
+
+@media screen and (max-width: 1000px) {
+    .notes_image:hover {
+        transform: scale(1.5);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    div.logo_container {
+        font-size: 15px;
+        width: 200px;
+    }
+
 }
 
 #notes_container {

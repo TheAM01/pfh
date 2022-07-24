@@ -4,6 +4,7 @@ import register from './Functions/register.js'
 import db from "./database.js";
 import fs from "fs";
 
+
 function routes (app, dir, ext) {
 
     dir += '/Public/'
@@ -16,18 +17,24 @@ function routes (app, dir, ext) {
         res.sendFile(dir + 'Static/home.html')
     });
 
-    app.get('/template', (req, res) => {
-        if (req.query.override !== 'true') return res.sendFile(dir + 'Static/not-found.html')
-        res.sendFile(dir + 'Static/template.html')
-    });
-
     app.get('/all', (req, res) => {
         res.sendFile(dir + 'Static/all.html')
     });
 
+    app.get('/contact', (req, res, next) => {
+        res.sendFile(dir + 'Static/contact.html');
+    });
+
+    app.get('/template', (req, res) => {
+        if (req.query.override !== 'true') return res.sendFile(dir + 'Static/not-found.html')
+        res.sendFile(dir + 'template.html')
+    });
+
+
     app.get('/login', (req, res, next) => {
         res.sendFile(dir + 'User/login.html');
     })
+
 
     app.get('/register', (req, res) => {
         res.sendFile(dir + 'User/register.html');
