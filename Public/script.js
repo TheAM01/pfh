@@ -89,6 +89,9 @@ function getFiles(io) {
         anchors.push(`<a href="${data.url}" class="credits_link">Source</a>`)
 
         document.getElementById('notes_container').innerHTML = anchors.join('\n');
+
+        document.title = `${heading} - Parhle Fail Hojayega`;
+
     });
 
 }

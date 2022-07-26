@@ -40,46 +40,49 @@ server.listen(port, async () => {
     console.clear()
     console.log('Initializing...')
     console.log(`Listening on port ${port}.`);
+    // await onload();
 
 });
 
 io.on('connection', async (socket) => {
 
     socketHandler(socket, io, store)
-    await onload();
 
 });
 
 async function onload () {
-    let chem = await db.list('xi_chem');
-    const chapter3 = {
-        name: 'chapter 3',
-        url: '/notes/xi/chem/3',
-        normals: 17,
+
+
+    const chapter = {
+        name: 'chapter 2',
+        url: '/notes/xi/chem/2',
+        normals: 12,
         subject: 'Chemistry',
         grade: 'XI',
         images: [
-            'https://i.ibb.co/G9NckYr/IMG-20220609-001249-756.jpg',
-            'https://i.imgur.com/FJWE8Do.png',
-            'https://i.imgur.com/1z3R8sN.png',
-            'https://i.imgur.com/NKwQxOz.png',
-            'https://i.imgur.com/hxcaxJ6.png',
-            'https://i.imgur.com/0p7qvQO.png',
-            'https://i.imgur.com/1CEOuTu.png',
-            'https://i.imgur.com/Uljlif5.png',
-            'https://i.imgur.com/YJasIJh.png',
-            'https://i.imgur.com/Y4VBLkd.png',
-            'https://i.imgur.com/OyKkzYO.png',
-            'https://i.imgur.com/qv1RSmk.png',
-            'https://i.imgur.com/l51BreG.png',
-            'https://i.imgur.com/HxIrW25.png',
-            'https://i.imgur.com/l7tw673.png',
-            'https://i.imgur.com/2aqS3gi.png',
-            'https://i.imgur.com/bHVz3Py.png'
+            "https://i.ibb.co/hmJS9wT/IMG-20220527-024639-574.jpg",
+            "https://i.ibb.co/Pcq6scm/IMG-20220527-024651-823.jpg",
+            "https://i.ibb.co/qxKC103/IMG-20220527-024704-246.jpg",
+            "https://i.ibb.co/JF5zjnZ/IMG-20220527-024712-841.jpg",
+            "https://i.ibb.co/mvNzPJN/IMG-20220527-024720-504.jpg",
+            "https://i.ibb.co/dcCTpQs/IMG-20220527-024729-212.jpg",
+            "https://i.ibb.co/SJK0fSy/IMG-20220527-024738-147.jpg",
+            "https://i.ibb.co/7VctK3f/IMG-20220527-024745-034.jpg",
+            "https://i.ibb.co/jGkmF22/IMG-20220527-024753-374.jpg",
+            "https://i.ibb.co/hZT7cS9/IMG-20220527-024800-807.jpg",
+            "https://i.ibb.co/nD2rqXw/IMG-20220527-024808-794.jpg",
+            "https://i.ibb.co/S32WRbc/IMG-20220527-024819-759.jpg"
         ]
-    }
-    await db.set('xi_chem_3', chapter3);
-    console.log(await db.get('xi_chem_3'))
+    };
+
+    await db.set('xi_chem_2', chapter);
+    console.log(await db.get('xi_chem_2'))
+
+
+    // let chem = await db.list('xi_chem');
+    // chem.forEach(async item => {
+    //     console.log([item, await db.get(item)])
+    // })
     // return console.log(await db.get('list_alpha'))
     //
     // let list = await db.get('list_alpha');

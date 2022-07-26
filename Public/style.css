@@ -330,8 +330,8 @@ span.emphasize {
 
 @media screen and (max-width: 400px) {
     div.logo_container {
-        font-size: 15px;
-        width: 200px;
+        font-size: 20px;
+        width: 90%;
     }
 
 }

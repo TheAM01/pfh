@@ -69,8 +69,6 @@ function routes (app, dir, ext) {
         ext.io.on('connection', socket => {
 
             socket.on('request_file', () => {
-                item.subject = subject;
-                item.grade = grade;
                 ext.io.emit('request_file', item);
             });
 
