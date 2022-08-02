@@ -36,8 +36,6 @@ function socketHandler (socket, io, store) {
 
     });
 
-    socket.on('create_profile', )
-
 }
 
 export default socketHandler;
