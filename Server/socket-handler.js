@@ -5,6 +5,8 @@ import util from "./util.js";
 
 function socketHandler (socket, io, store) {
 
+    const req = socket.request
+
     socket.on('db_query', async (val) => {
         let queryResults = await db.get(val);
         await io.emit('db_query_result', queryResults);
@@ -35,6 +37,30 @@ function socketHandler (socket, io, store) {
         }
 
     });
+
+    socket.on('request_file', async data => {
+        const item = await db.get(`${data.grade}_${data.subject}_${data.index}`);
+        io.emit('request_file', item);
+    });
+
+    socket.on('create_profile', async () => {
+
+        const person = await util.checkPerson(req);
+
+        if (!person) return io.emit("create_profile",
+            {
+                username: "John Doe",
+                grade: "grade_NaN",
+                avatarUrl: "/cdn/default.png",
+                savedUrls: [
+                    {title: "XI Chemistry Chapter 1", url: "/notes/xi/chem/1"}
+                ]
+            }
+        );
+
+        io.emit("create_profile", person)
+
+    }).setMaxListeners(0);
 
 }
 

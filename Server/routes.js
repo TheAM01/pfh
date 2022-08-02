@@ -60,12 +60,17 @@ function routes (app, dir, ext) {
 
     app.post('/register', async (req, res) => {
         await register(req, res);
-    })
+    });
 
-    // app.post('/write', (req, res) => {
-    //     writePost(req.body.postname, req.body.postdescription, req.body.posturl);
-    //     res.sendStatus(200)
-    // });
+    app.get('/logout', (req, res) => {
+
+        console.log(req.session)
+        req.session.destroy((err) => {
+            if (err) return res.clearCookie("notcookie", { path: "/" }).send('cleared cookie');
+        });
+        res.redirect('/')
+
+    });
 
     app.get('/notes/:grade/:subject/:index', async (req, res) => {
 
@@ -80,18 +85,20 @@ function routes (app, dir, ext) {
 
         res.sendFile(dir + 'Dynamic/post-template.html')
 
-        ext.io.on('connection', (socket) => {
+    });
 
-            socket.on('request_file', () => {
-                ext.io.emit('request_file', item);
-            });
+    app.get('/api/:grade/:subject/:index', async (req, res) => {
 
-            socket.on('load_profile', async () => {
-                const data = await util.checkPerson(req)
-                ext.io.emit('load_profile', data);
-            })
+        let {grade, subject, index} = req.params;
+        grade = grade.toLowerCase();
+        subject = subject.toLowerCase();
+        index = index.toLowerCase();
 
-        });
+        const item = await db.get(`${grade}_${subject}_${index}`);
+
+        if (!item) return res.send({error: true, status: "NOT_FOUND", code: 404});
+
+        res.json(item)
 
     });
 

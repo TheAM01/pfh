@@ -47,9 +47,10 @@ function validatePerson (socket) {
 
     socket.on('user_validation', (session) => {
         if (session.authenticated) {
-            document.getElementById('login_button').style.display = 'none';
-            document.getElementById('register_button').setAttribute('href', '/profile')
-            document.getElementById('user_option').innerHTML = "Profile";
+            document.getElementById('primary_button').setAttribute('href', '/profile');
+            document.getElementById('primary_option').innerHTML = "Profile";
+            document.getElementById('secondary_button').setAttribute('href', '/logout')
+            document.getElementById('secondary_option').innerHTML = "Log out";
         }
     });
 
@@ -105,7 +106,16 @@ function getFiles(socket) {
 
     // const socket = io();
 
-    socket.emit('request_file');
+    const path = window.location.pathname.substring(1)
+    const args = path.split('/');
+
+    socket.emit('request_file',
+        {
+            grade: args[1],
+            subject: args[2],
+            index:args[3]
+        }
+    );
 
     socket.on('request_file', (data) => {
 

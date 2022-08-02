@@ -30,13 +30,13 @@
     <a href="https://pwfh.ga/bot">
         <div class="nav_btn">Bot</div>
     </a>
-    <a href="/login" class="user" id="login_button">
-        <div class="nav_btn">
+    <a href="/login" class="user" id="primary_button">
+        <div class="nav_btn" id="primary_option">
             Login
         </div>
     </a>
-    <a href="/register" class="user" id="register_button">
-        <div class="nav_btn" id="user_option">
+    <a href="/register" class="user" id="secondary_button">
+        <div class="nav_btn" id="secondary_option">
             Register
         </div>
     </a>
@@ -62,6 +62,24 @@
     const socket = io();
 
     socket.emit('create_profile');
+
+    socket.on('create_profile', (userData) => {
+
+        document.getElementById('user_avatar').innerHTML = `<img src='${userData.avatarUrl}' class="avatar_img">`
+        document.getElementById('username').innerHTML = userData.username;
+
+        const saves = document.getElementById('saves');
+        let rawSaves = [];
+
+        if (!userData.savedUrls[0]) return saves.innerHTML = "No saved pages. The pages that you save will show up here."
+
+        userData.savedUrls.forEach(item => {
+            rawSaves.push(`<a href="${item.url}">${item.title}</a>`)
+        });
+
+        saves.innerHTML = rawSaves.join('<br>\n');
+
+    })
     // loadProfile(socket)
 </script>
 </body>

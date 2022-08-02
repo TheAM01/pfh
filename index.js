@@ -11,7 +11,6 @@ import db from './Server/database.js'
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
 const dir = path.resolve()
 const store = new session.MemoryStore()
 const port = process.env.PORT || 3000;
@@ -24,6 +23,30 @@ const sessionMiddleware = session({
     },
     saveUninitialized: false,
     store
+});
+const io = new Server(server, {
+    allowRequest: (req, callback) => {
+        // with HTTP long-polling, we have access to the HTTP response here, but this is not
+        // the case with WebSocket, so we provide a dummy response object
+        const fakeRes = {
+            getHeader() {
+                return [];
+            },
+            setHeader(key, values) {
+                req.cookieHolder = values[0];
+            },
+            writeHead() {},
+        };
+        sessionMiddleware(req, fakeRes, () => {
+            if (req.session) {
+                // trigger the setHeader() above
+                fakeRes.writeHead();
+                // manually save the session (normally triggered by res.end())
+                req.session.save();
+            }
+            callback(null, true);
+        });
+    },
 });
 
 io.use(wrap(sessionMiddleware));
@@ -42,14 +65,20 @@ server.listen(port, async () => {
     console.log(`Listening on port ${port}.`);
     // await onload();
 
-    // let users = await db.get('users');
-    // users[0].userData.savedUrls.push({title: 'XI Chemistry Chapter 1', url: '/notes/xi/chem/1'})
-    // await db.set('users', users)
+    let users = await db.get('users');
+    users[0].userData.savedUrls = [{title: 'XI Chemistry Chapter 1', url: '/notes/xi/chem/1'}]
+    await db.set('users', users)
+});
+
+io.engine.on("initial_headers", (headers, req) => {
+    if (req.cookieHolder) {
+        headers["set-cookie"] = req.cookieHolder;
+        delete req.cookieHolder;
+    }
 });
 
 io.on('connection', async (socket) => {
     socketHandler(socket, io, store)
-    console.log('Connected.')
 });
 
 async function onload () {
