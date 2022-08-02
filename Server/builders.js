@@ -20,7 +20,7 @@ class User {
 
         if (normal > 2) this.userData.avatar = '/cdn/default.png'
         else this.userData.avatar = `/cdn/default_${normal}.png`;
-        
+
     }
 
     async register () {
