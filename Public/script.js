@@ -6,11 +6,9 @@ function test () {
     console.log("Hello, Wilson!")
 }
 
-function createNotesList (io) {
+function createNotesList (socket) {
 
-    const socket = io()
     socket.emit('db_query', 'list_alpha');
-
 
     socket.on('db_query_result', val => {
 
@@ -41,11 +39,27 @@ function createNotesList (io) {
     });
 }
 
-function validatePerson (io) {
+function validatePerson (socket) {
 
-    const socket = io();
+    // const socket = io();
 
     socket.emit('user_validation', {});
+
+    socket.on('user_validation', (session) => {
+        if (session.authenticated) {
+            document.getElementById('login_button').style.display = 'none';
+            document.getElementById('register_button').setAttribute('href', '/profile')
+            document.getElementById('user_option').innerHTML = "Profile";
+        }
+    });
+
+}
+
+function loadProfile (socket) {
+
+    socket.emit('user_validation');
+    socket.emit('load_profile');
+
 
     socket.on('user_validation', (session) => {
         if (session) {
@@ -53,6 +67,24 @@ function validatePerson (io) {
             document.getElementById('register_button').setAttribute('href', '/profile')
             document.getElementById('user_option').innerHTML = "Profile"
         }
+    });
+
+    socket.on('load_profile', (userData) => {
+        console.log('load_profile fired')
+
+        document.getElementById('user_avatar').innerHTML = `<img src='${userData.avatarUrl}' class="avatar_img">`
+        document.getElementById('username').innerHTML = userData.username;
+
+        const saves = document.getElementById('saves');
+        let rawSaves = [];
+
+        if (!userData.savedUrls[0]) return saves.innerHTML = "No saved pages. The pages that you save will show up here."
+
+        userData.savedUrls.forEach(item => {
+            rawSaves.push(`<a href="${item.url}">${item.title}</a>`)
+        });
+
+        saves.innerHTML = rawSaves.join('<br>\n')
     });
 
 }
@@ -69,11 +101,12 @@ function checkUrlParams(param, errorMessage) {
 
 }
 
-function getFiles(io) {
+function getFiles(socket) {
 
-    const socket = io();
+    // const socket = io();
 
     socket.emit('request_file');
+
     socket.on('request_file', (data) => {
 
         const heading = `${data.grade.toUpperCase()} ${data.subject.capitalizeInitial()} ${data.name.replace(/_/g, ' ').capitalizeInitial()}`
@@ -94,4 +127,11 @@ function getFiles(io) {
 
     });
 
+}
+
+
+function savePost() {
+    let url = window.location.href;
+    url += "?save_post=true";
+    window.location.replace(url)
 }

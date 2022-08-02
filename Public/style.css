@@ -131,6 +131,12 @@ div.button_row {
     width: 200px;
 }
 
+div.user_data {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
 /*
     Modifying anchor tags
 */
@@ -166,11 +172,17 @@ a.credits_link {
     display: block;
 }
 
+img.avatar_img {
+    width: 50%;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+}
 
 img#buffer {
     animation: buffer infinite 2s linear;
     margin-left: 5%;
-    width: 2.5%;
+    width: 5%;
 }
 
 form.standard_form {
@@ -322,13 +334,22 @@ span.emphasize {
     text-decoration: white underline;
 }
 
+button.save_button {
+    text-align: center;
+    box-sizing: border-box;
+    background: #ffffff00;
+    padding: 2px;
+    border-radius: 1px;
+    border: solid 1px #000000;
+}
+
 @media screen and (max-width: 1000px) {
     .notes_image:hover {
         transform: scale(1.5);
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 460px) {
     div.logo_container {
         font-size: 20px;
         width: 90%;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/cdn/pwfh_logo.png">
+    <title>Untitled - Parhle Fail Hojayega</title>
+</head>
+
+<body>
+
+<a href="/">
+    <div class="logo_container">
+        <b>PFH</b>: Parhle, Fail Hojayega
+    </div>
+</a>
+
+
+<div class="navi_bar workspace">
+    <a href="/home">
+        <div class="nav_btn">Home</div>
+    </a>
+    <a href="/all">
+        <div class="nav_btn">All notes</div>
+    </a>
+    <a href="/contact">
+        <div class="nav_btn">Contact</div>
+    </a>
+    <a href="https://pwfh.ga/bot">
+        <div class="nav_btn">Bot</div>
+    </a>
+    <a href="/login" class="user" id="login_button">
+        <div class="nav_btn">
+            Login
+        </div>
+    </a>
+    <a href="/register" class="user" id="register_button">
+        <div class="nav_btn" id="user_option">
+            Register
+        </div>
+    </a>
+</div>
+
+<div class="body workspace">
+    <div class="intro_head">
+        <h1>User profile</h1>
+    </div>
+    <div class="content">
+        <div class="user_avatar" id="user_avatar"></div>
+
+        <div class="user_data">
+            <span class="user_key">Username: </span><span class="user_value" id="username"></span><br>
+            <span class="user_key">Saved notes: </span><div class="user_saves" id="saves"></div>
+        </div>
+
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/script.js"></script>
+<script type="text/javascript">
+    const socket = io();
+
+    socket.emit('create_profile');
+    // loadProfile(socket)
+</script>
+</body>
+</html>

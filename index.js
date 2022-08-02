@@ -42,41 +42,45 @@ server.listen(port, async () => {
     console.log(`Listening on port ${port}.`);
     // await onload();
 
+    // let users = await db.get('users');
+    // users[0].userData.savedUrls.push({title: 'XI Chemistry Chapter 1', url: '/notes/xi/chem/1'})
+    // await db.set('users', users)
 });
 
 io.on('connection', async (socket) => {
-
     socketHandler(socket, io, store)
-
+    console.log('Connected.')
 });
 
 async function onload () {
+    const images = [
+        "https://i.ibb.co/FXRzf0w/IMG-20220625-015621-261.jpg",
+        "https://i.ibb.co/99MmBcX/IMG-20220625-015629-435.jpg",
+        "https://i.ibb.co/djpWHrn/IMG-20220625-015637-789.jpg",
+        "https://i.ibb.co/8sDd0bM/IMG-20220625-015649-783.jpg",
+        "https://i.ibb.co/4J8Vjcq/IMG-20220625-015659-420.jpg",
+        "https://i.ibb.co/gmT6chn/IMG-20220625-015710-445.jpg",
+        "https://i.ibb.co/W3Cnx7B/IMG-20220625-015718-516.jpg",
+        "https://i.ibb.co/6Dz9cxR/IMG-20220625-015730-523.jpg",
+        "https://i.ibb.co/wSpzBfT/IMG-20220625-015738-668.jpg",
+        "https://i.ibb.co/B6Gnjmb/IMG-20220625-015749-356.jpg",
+        "https://i.ibb.co/jzCh5Zv/IMG-20220625-015808-662.jpg",
+        "https://i.ibb.co/TW7vL5v/IMG-20220625-015817-693.jpg",
+        "https://i.ibb.co/fp8YmfB/IMG-20220625-015824-113.jpg"
+    ]
 
 
     const chapter = {
-        name: 'chapter 2',
-        url: '/notes/xi/chem/2',
-        normals: 12,
-        subject: 'Chemistry',
+        name: 'chapter 10',
+        url: '/notes/xi/phys/10',
+        normals: images.length,
+        subject: 'Physics',
         grade: 'XI',
-        images: [
-            "https://i.ibb.co/hmJS9wT/IMG-20220527-024639-574.jpg",
-            "https://i.ibb.co/Pcq6scm/IMG-20220527-024651-823.jpg",
-            "https://i.ibb.co/qxKC103/IMG-20220527-024704-246.jpg",
-            "https://i.ibb.co/JF5zjnZ/IMG-20220527-024712-841.jpg",
-            "https://i.ibb.co/mvNzPJN/IMG-20220527-024720-504.jpg",
-            "https://i.ibb.co/dcCTpQs/IMG-20220527-024729-212.jpg",
-            "https://i.ibb.co/SJK0fSy/IMG-20220527-024738-147.jpg",
-            "https://i.ibb.co/7VctK3f/IMG-20220527-024745-034.jpg",
-            "https://i.ibb.co/jGkmF22/IMG-20220527-024753-374.jpg",
-            "https://i.ibb.co/hZT7cS9/IMG-20220527-024800-807.jpg",
-            "https://i.ibb.co/nD2rqXw/IMG-20220527-024808-794.jpg",
-            "https://i.ibb.co/S32WRbc/IMG-20220527-024819-759.jpg"
-        ]
+        images: images
     };
 
-    await db.set('xi_chem_2', chapter);
-    console.log(await db.get('xi_chem_2'))
+    await db.set('xi_phys_10', chapter);
+    console.log(await db.get('xi_phys_10'))
 
 
     // let chem = await db.list('xi_chem');

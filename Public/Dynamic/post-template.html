@@ -55,7 +55,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>
     <script type="text/javascript">
-        getFiles(io);
+        const socket = io();
+        getFiles(socket);
+        validatePerson(socket);
     </script>
 </body>
 </html>

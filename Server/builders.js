@@ -8,7 +8,12 @@ class User {
         this.username = username;
         this.email = email;
         this.password = bcrypt.hashSync(password, 10)
-        this.grade = grade
+        this.userData = {
+            username: this.username,
+            grade: grade,
+            avatarUrl: '/cdn/default.png',
+            savedUrls: []
+        }
     }
 
     async register () {

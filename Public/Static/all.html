@@ -53,8 +53,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>
     <script>
-        createNotesList(io)
-        validatePerson(io)
+        const socket = io()
+        createNotesList(socket)
+        validatePerson(socket)
     </script>
 
 </body>

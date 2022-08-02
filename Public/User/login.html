@@ -72,10 +72,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>
     <script type="text/javascript">
-        validatePerson(io)
+        const socket = io()
+        validatePerson(socket)
         checkUrlParams('wrong_password', 'Email or password is incorrect. Try again.')
         checkUrlParams('account_created', 'Account has been registered. Log in to your account.');
         checkUrlParams('invalid_credentials', 'Credentials are invalid. Please check your username & password then try again.')
+        checkUrlParams('session_confirmation', 'Session has expired. Please log into your profile to access it.');
     </script>
 </body>
 </html>

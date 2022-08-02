@@ -1,6 +1,7 @@
 import login from "./Functions/login.js";
 import writePost from "./Functions/create-post.js";
 import register from './Functions/register.js'
+import util from './util.js'
 import db from "./database.js";
 import fs from "fs";
 
@@ -35,9 +36,22 @@ function routes (app, dir, ext) {
         res.sendFile(dir + 'User/login.html');
     })
 
-
     app.get('/register', (req, res) => {
         res.sendFile(dir + 'User/register.html');
+    });
+
+    app.get('/profile', (req, res) => {
+
+        if (!util.checkAuth(req, ext.store)) return res.redirect('/login?session_confirmation=true')
+
+        res.sendFile(dir + 'User/profile.html');
+
+        ext.io.on('connection', (socket) => {
+            socket.on('load_profile', async () => {
+                let data = await util.checkPerson(req);
+                ext.io.emit('load_profile', data);
+            })
+        })
     })
 
     app.post('/login', async (req, res) => {
@@ -66,11 +80,16 @@ function routes (app, dir, ext) {
 
         res.sendFile(dir + 'Dynamic/post-template.html')
 
-        ext.io.on('connection', socket => {
+        ext.io.on('connection', (socket) => {
 
             socket.on('request_file', () => {
                 ext.io.emit('request_file', item);
             });
+
+            socket.on('load_profile', async () => {
+                const data = await util.checkPerson(req)
+                ext.io.emit('load_profile', data);
+            })
 
         });
 

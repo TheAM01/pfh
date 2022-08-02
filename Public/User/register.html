@@ -86,7 +86,8 @@
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js">
-        validatePerson(io)
+        const socket = io()
+        validatePerson(socket)
         checkUrlParams('email_exists', 'Email already exists. Try logging in or chose another Email.')
         checkUrlParams('username_exists', 'Username already exists. Try logging in or chose another username.')
     </script>

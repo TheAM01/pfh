@@ -1,5 +1,6 @@
 import db from './database.js'
 import session from "express-session";
+import util from "./util.js";
 
 
 function socketHandler (socket, io, store) {
@@ -15,6 +16,7 @@ function socketHandler (socket, io, store) {
     });
 
     socket.on('user_validation', async (obj) => {
+
         if (!socket.handshake.headers.cookie) return await io.emit('user_validation', false)
         let sessionId = socket.handshake.headers.cookie.split(' ')
 
@@ -27,11 +29,14 @@ function socketHandler (socket, io, store) {
         let trt = store.sessions[sessionId]
 
         if (!trt) {
-            return await io.emit('user_validation', false);
+            return await io.emit('user_validation', {authenticated: false});
         } else {
-            return await io.emit('user_validation', true);
+            return await io.emit('user_validation', {authenticated: true});
         }
-    })
+
+    });
+
+    socket.on('create_profile', )
 
 }
 
