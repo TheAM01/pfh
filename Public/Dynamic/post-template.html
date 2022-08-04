@@ -48,6 +48,13 @@
         <div class="content">
             <div class="sub_content">Please reload page a few times if images don't load.</div>
 
+            <div class="save_button_container" id="save_button_container">
+                <button class="save_button_invalid" id="save_button" onclick="">
+                    Log in or register to save post.
+                </button>
+            </div>
+            <div class="warning" id="warning"></div>
+
             <div id="notes_container">
                 <img id='buffer' src="/cdn/buffering.png" alt="buffer">
             </div>
@@ -59,6 +66,7 @@
         const socket = io();
         getFiles(socket);
         validatePerson(socket);
+        // checkSaves(socket)
     </script>
 </body>
 </html>

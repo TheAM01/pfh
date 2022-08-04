@@ -18,7 +18,7 @@ async function checkPerson (req) {
 
     let user = req.session.user;
 
-    if (!user) return undefined
+    if (!user) return null
 
     let person = users.find(u => bcrypt.compareSync(u.email, user));
 
@@ -26,7 +26,22 @@ async function checkPerson (req) {
 
 }
 
+async function updatePerson(newUserData) {
+
+    const users = await db.get('users');
+
+    const user = users.find(u => u.username === newUserData.username);
+
+    if (!user) return null
+
+    user.userData = newUserData;
+
+    await db.set('users', users)
+
+}
+
 export default {
     checkAuth,
-    checkPerson
+    checkPerson,
+    updatePerson
 }

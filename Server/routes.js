@@ -64,7 +64,6 @@ function routes (app, dir, ext) {
 
     app.get('/logout', (req, res) => {
 
-        console.log(req.session)
         req.session.destroy((err) => {
             if (err) return res.clearCookie("notcookie", { path: "/" }).send('cleared cookie');
         });
@@ -110,6 +109,12 @@ function routes (app, dir, ext) {
         }
         res.sendStatus(404);
 
+    })
+
+    app.get('/db/:query', async (req, res) => {
+        const item = await db.get(req.params.query)
+        res.json(item);
+        console.log(item);
     })
 
     app.use((req, res) => {

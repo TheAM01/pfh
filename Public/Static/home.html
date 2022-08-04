@@ -78,6 +78,8 @@
     <script type="text/javascript">
         const socket = io()
         validatePerson(socket)
+        socket.emit('test')
+        socket.on('yes', () => console.log('YES!!'))
     </script>
 
 </body>

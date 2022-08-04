@@ -17,6 +17,7 @@ class User {
             grade: grade,
             savedUrls: []
         }
+        // console.log(normal)
 
         if (normal > 2) this.userData.avatar = '/cdn/default.png'
         else this.userData.avatar = `/cdn/default_${normal}.png`;
@@ -24,7 +25,6 @@ class User {
     }
 
     async register () {
-        console.log(this)
         if (!this.username || !this.password || !this.email) throw "Invalid credentials."
         let users = await db.get('users');
         users.push(this);

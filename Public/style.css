@@ -16,6 +16,7 @@ body {
     background-position: center;
     background-image: url('/cdn/background_01.png');
     background-attachment: fixed;
+    /*transform: rotateX(0);*/
     padding: 1%;
     margin: auto;
     font-family: 'Glory', sans-serif;
@@ -42,6 +43,7 @@ div.workspace {
     padding: 2%;
     margin: 20px auto;
     box-sizing: border-box;
+    overflow: scroll;
 }
 
 div.navi_bar {
@@ -52,11 +54,11 @@ div.navi_bar {
     border: solid #000000 1px;
     width: 90%;
     /* border: solid #000000 3px; */
-    padding: 0 7px;
     border-radius: 10px;
     display: table;
     margin: 30px auto auto auto;
     box-sizing: border-box;
+    padding: 0;
 }
 
 div.sub_content {
@@ -68,9 +70,19 @@ div.nav_btn {
     font-size: 20px;
     display: inline-flex;
     padding: 7px;
-    /* border: #000000 solid 1px; */
+     /*border: #000000 solid 1px;*/
     margin: 0;
     transition: 0.8s;
+}
+
+div.navi_bar > a:first-child > div {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+div#secondary_option {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 div.nav_btn:hover {
@@ -125,16 +137,33 @@ div#warning {
 
 div.button_row {
     padding: 0;
-    margin: 15% auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px !important;
     border-radius: 10px;
+    box-sizing: border-box;
     border: solid 1px #1d1d1d;
     width: 200px;
 }
 
 div.user_data {
-    width: 60%;
-    margin: auto;
-    text-align: center;
+    border-top: #000000 solid 1px;
+    padding-top: 10px;
+}
+
+div.user_key_value_pair {
+    margin-top: 10px !important;
+}
+
+div.user_saves {
+    padding-left: 10px;
+}
+
+div.stray {
+    padding: 0;
+    margin: 0 !important;
+    box-sizing: border-box;
+
 }
 
 /*
@@ -173,7 +202,7 @@ a.credits_link {
 }
 
 img.avatar_img {
-    width: 50%;
+    width: 25%;
     border-radius: 50%;
     margin: auto;
     display: block;
@@ -219,13 +248,17 @@ button:hover {
 
 div.input_group {
     display: block;
-    margin: 15% auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 70%;
 }
 
 input.standard_input {
     display: block;
-    margin: 15% auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
     width: 80%;
 }
 
@@ -256,10 +289,12 @@ a#s_button {
 }
 
 .tooltip {
-    color: #00d5ff;
+    color: #ff4545;
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted black;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .tooltip .tooltip_text {
@@ -289,11 +324,12 @@ a#s_button {
 
 .radio_group {
     display: inline-flex;
-    overflow: hidden;
+    overflow: scroll;
     border-radius: 15px;
     box-shadow: 1px 1px #5e5e5e5e;
     padding: 0;
-    margin-bottom: 4% !important;
+    margin: auto !important;
+    border: 1px solid #000000;
 }
 
 .radio_input {
@@ -301,21 +337,20 @@ a#s_button {
 }
 
 .radio_label {
-    padding: 15px;
+    padding: 10px;
     font-size: 15px;
     cursor: pointer;
     background-color: #FF544D;
-    transition: background-color 0.3s;
+    transition: background-color 1s;
     margin: 0 !important;
-    border: 1px solid #ff544d;
 }
 
 .radio_label:not(:last-of-type) {
-    border-right: 1px solid #ff3f39;
+    border-right: 1px solid #000000;
 }
 
 .radio_input:checked + .radio_label {
-    background: #ff3f39;
+    background: #ff1f1a;
 }
 
 .notes_image {
@@ -334,18 +369,29 @@ span.emphasize {
     text-decoration: white underline;
 }
 
-button.save_button {
+button.save_button, button.save_button_invalid {
     text-align: center;
     box-sizing: border-box;
     background: #ffffff00;
-    padding: 2px;
     border-radius: 1px;
     border: solid 1px #000000;
+    font-family: 'Glory', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    padding: 5px
+}
+
+button.save_button:hover {
+    box-shadow: 1px 1px #000000;
 }
 
 @media screen and (max-width: 1000px) {
     .notes_image:hover {
         transform: scale(1.5);
+    }
+
+    .radio_label {
+        padding: 10px;
     }
 }
 

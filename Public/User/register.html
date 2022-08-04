@@ -46,6 +46,9 @@
             <h1>Register</h1>
         </div>
         <div class="content">
+
+            <div class="warning" id="warning"></div>
+
             <form action="/register" method="POST" name="login" class="standard_form">
                 <div class="input_group">
                     <label for="username">Username</label>
@@ -61,21 +64,28 @@
                 </div>
 
                 <div class="input_group">
-                    Select your class
-                    <div class="tooltip">(i)
-                        <span class="tooltip_text">Does not affect accessibility to notes. We record this for analytical purposes.</span>
+
+                    <div class="stray">
+                        Select your class
+                        <div class="tooltip">(i)
+                            <span class="tooltip_text">Does not affect accessibility to notes. We record this for analytical purposes.</span>
+                        </div>
+                    </div>
+                    <div class="radio_group">
+
+                        <input type="radio" id="grade_xi" name="grade" value="grade_xi" class="radio_input">
+                        <label for="grade_xi" class="radio_label">Class XI (First year)</label>
+
+                        <input type="radio" id="grade_xii" name="grade" value="grade_xii" class="radio_input">
+                        <label for="grade_xii" class="radio_label">Class XII (Second year)</label>
+
+                        <input type="radio" id="grade_idk" name="grade" value="grade_idk" class="radio_input">
+                        <label for="grade_idk" class="radio_label">Other (rather not say)</label>
+
                     </div>
                 </div>
 
-                <div class="radio_group">
 
-                    <input type="radio" id="grade_xi" name="grade" value="grade_xi" class="radio_input">
-                    <label for="grade_xi" class="radio_label">Class XI (First year)</label>
-
-                    <input type="radio" id="grade_xii" name="grade" value="grade_xii" class="radio_input">
-                    <label for="grade_xii" class="radio_label">Class XII (Second year)</label>
-
-                </div>
 
                 <div class="button_row">
                     <button type="submit" name="submit" class="submit_button" id="register">Register</button><!--
@@ -85,11 +95,14 @@
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/script.js">
+    <script src="/script.js"></script>
+    <script type="text/javascript">
         const socket = io()
         validatePerson(socket)
-        checkUrlParams('email_exists', 'Email already exists. Try logging in or chose another Email.')
-        checkUrlParams('username_exists', 'Username already exists. Try logging in or chose another username.')
+        checkUrlParams('email_exists', 'Email already exists. Try logging in or choose another email.')
+        checkUrlParams('username_exists', 'Username already exists. Try logging in or choose another username.')
+        checkUrlParams('incomplete_form', 'Please fill out the entire form.')
+        checkUrlParams('unsafe_password', 'Password must be at least 8 characters in length.')
     </script>
 
 </body>

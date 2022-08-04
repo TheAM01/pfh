@@ -8,13 +8,14 @@ import path from 'path';
 import createRoutes from "./Server/routes.js";
 import socketHandler from "./Server/socket-handler.js";
 import db from './Server/database.js'
+import {User} from "./Server/builders.js";
 
 const app = express();
 const server = http.createServer(app);
 const dir = path.resolve()
 const store = new session.MemoryStore()
 const port = process.env.PORT || 3000;
-const secret = process.env.SECRET || "moshimoshi69420"
+const secret = process.env.COOKIE_SECRET || "moshimoshi69420"
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 const sessionMiddleware = session({
     secret: secret,
@@ -65,9 +66,6 @@ server.listen(port, async () => {
     console.log(`Listening on port ${port}.`);
     // await onload();
 
-    let users = await db.get('users');
-    users[0].userData.savedUrls = [{title: 'XI Chemistry Chapter 1', url: '/notes/xi/chem/1'}]
-    await db.set('users', users)
 });
 
 io.engine.on("initial_headers", (headers, req) => {
@@ -82,40 +80,40 @@ io.on('connection', async (socket) => {
 });
 
 async function onload () {
-    const images = [
-        "https://i.ibb.co/FXRzf0w/IMG-20220625-015621-261.jpg",
-        "https://i.ibb.co/99MmBcX/IMG-20220625-015629-435.jpg",
-        "https://i.ibb.co/djpWHrn/IMG-20220625-015637-789.jpg",
-        "https://i.ibb.co/8sDd0bM/IMG-20220625-015649-783.jpg",
-        "https://i.ibb.co/4J8Vjcq/IMG-20220625-015659-420.jpg",
-        "https://i.ibb.co/gmT6chn/IMG-20220625-015710-445.jpg",
-        "https://i.ibb.co/W3Cnx7B/IMG-20220625-015718-516.jpg",
-        "https://i.ibb.co/6Dz9cxR/IMG-20220625-015730-523.jpg",
-        "https://i.ibb.co/wSpzBfT/IMG-20220625-015738-668.jpg",
-        "https://i.ibb.co/B6Gnjmb/IMG-20220625-015749-356.jpg",
-        "https://i.ibb.co/jzCh5Zv/IMG-20220625-015808-662.jpg",
-        "https://i.ibb.co/TW7vL5v/IMG-20220625-015817-693.jpg",
-        "https://i.ibb.co/fp8YmfB/IMG-20220625-015824-113.jpg"
-    ]
 
 
-    const chapter = {
-        name: 'chapter 10',
-        url: '/notes/xi/phys/10',
-        normals: images.length,
-        subject: 'Physics',
-        grade: 'XI',
-        images: images
-    };
+    // const chapter = {
+    //     name: 'chapter 10',
+    //     url: '/notes/xi/phys/10',
+    //     normals: images.length,
+    //     subject: 'Physics',
+    //     grade: 'XI',
+    //     images: images
+    // };
+    //
+    // await db.set('xi_phys_10', chapter);
+    // console.log(await db.get('xi_phys_10'))
 
-    await db.set('xi_phys_10', chapter);
-    console.log(await db.get('xi_phys_10'))
 
+    let maths = await db.list('xi_maths');
 
-    // let chem = await db.list('xi_chem');
-    // chem.forEach(async item => {
-    //     console.log([item, await db.get(item)])
-    // })
+    maths.forEach(async stuff => {
+
+        const item = await db.get(stuff)
+        const images = item.images;
+
+        const newItem = {
+            name: item.name.replace(/\s/g, ''),
+            url: item.url,
+            normals: images.length,
+            subject: 'Mathematics',
+            grade: 'XI',
+            images: images
+        };
+
+        await db.set(stuff, newItem);
+
+    })
     // return console.log(await db.get('list_alpha'))
     //
     // let list = await db.get('list_alpha');

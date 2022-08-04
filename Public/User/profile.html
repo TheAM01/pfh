@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" type="image/x-icon" href="/cdn/pwfh_logo.png">
-    <title>Untitled - Parhle Fail Hojayega</title>
+    <title>Profile - Parhle Fail Hojayega</title>
 </head>
 
 <body>
@@ -50,8 +50,15 @@
         <div class="user_avatar" id="user_avatar"></div>
 
         <div class="user_data">
-            <span class="user_key">Username: </span><span class="user_value" id="username"></span><br>
-            <span class="user_key">Saved notes: </span><div class="user_saves" id="saves"></div>
+
+            <div class="user_key_value_pair">
+                <span class="user_key">Username: </span><span class="user_value" id="username"></span>
+            </div>
+
+            <div class="user_key_value_pair">
+                <span class="user_key">Saved notes: </span><div class="user_saves" id="saves"></div>
+            </div>
+
         </div>
 
     </div>
@@ -59,13 +66,17 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="/script.js"></script>
 <script type="text/javascript">
+
     const socket = io();
+
+    validatePerson(socket);
 
     socket.emit('create_profile');
 
     socket.on('create_profile', (userData) => {
 
-        document.getElementById('user_avatar').innerHTML = `<img src='${userData.avatarUrl}' class="avatar_img">`
+
+        document.getElementById('user_avatar').innerHTML = `<img src='${userData.avatar}' class="avatar_img">`
         document.getElementById('username').innerHTML = userData.username;
 
         const saves = document.getElementById('saves');
