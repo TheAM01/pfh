@@ -201,6 +201,14 @@ a.credits_link {
     display: block;
 }
 
+a.logo_link {
+    /*background: -webkit-linear-gradient(45deg, #ffffff, #ff5050);*/
+    /*-webkit-background-clip: text;*/
+    /*-webkit-text-fill-color: transparent;*/
+    /*font-weight: bold;*/
+    color: white;
+}
+
 img.avatar_img {
     width: 25%;
     border-radius: 50%;
