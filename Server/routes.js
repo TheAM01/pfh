@@ -26,6 +26,10 @@ function routes (app, dir, ext) {
         res.sendFile(dir + 'Static/contact.html');
     });
 
+    app.get('/bot', (req, res) => {
+        res.redirect('https://go.theam.ga/pfh/')
+    })
+
     app.get('/template', (req, res) => {
         if (req.query.override !== 'true') return res.sendFile(dir + 'Static/not-found.html')
         res.sendFile(dir + 'template.html')
@@ -109,12 +113,6 @@ function routes (app, dir, ext) {
         }
         res.sendStatus(404);
 
-    })
-
-    app.get('/db/:query', async (req, res) => {
-        const item = await db.get(req.params.query)
-        res.json(item);
-        console.log(item);
     })
 
     app.use((req, res) => {
