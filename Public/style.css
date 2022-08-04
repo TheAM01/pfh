@@ -43,7 +43,7 @@ div.workspace {
     padding: 2%;
     margin: 20px auto;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 div.navi_bar {
