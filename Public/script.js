@@ -46,6 +46,7 @@ function validatePerson (socket) {
     socket.emit('user_validation');
 
     socket.on('user_validation', (session) => {
+
         if (session.authenticated) {
 
             document.getElementById('primary_button').setAttribute('href', '/profile');
@@ -53,7 +54,13 @@ function validatePerson (socket) {
             document.getElementById('secondary_button').setAttribute('href', '/logout')
             document.getElementById('secondary_option').innerHTML = "Log out";
 
+            const comment = document.getElementById('comment_section_intro');
+            const commentForm = document.getElementById('comment_form')
+            if (comment) comment.innerHTML = "Join the discussion by typing a comment!"
+            if(commentForm) commentForm.setAttribute('style', 'display: inline;')
+
         }
+
     });
 
 }
@@ -124,31 +131,62 @@ function getFiles(socket) {
         const {item, includes} = data;
         const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
         const anchors = [];
+        const comments = []
 
         item.images.forEach((img, index) => {
             anchors.push(`<img src="${img}" class="notes_image" alt="Resource image ${index + 1}">`)
         });
         anchors.push(`<a href="${item.url}" class="credits_link">Source</a>`)
 
+        if(!item.comments) item.comments = []
+
+        item.comments.forEach((comment) => {
+            comments.push(
+                `
+                    <div class="comment">
+                        <div class="comment_thumbnail">
+                            <img src="${comment.thumbnail}" class="comment_thumbnail_img">
+                            <span class="comment_username">${comment.user}</span>
+                            <span class="stray">•</span>
+                            <span class="comment_timestamp">${comment.timestamp}</span>
+                            <div class="comment_content">${comment.comment}</div>
+                        </div>
+                    </div>
+                `
+            )
+        })
+
         document.getElementById('page_heading').innerHTML = heading;
         document.getElementById('notes_container').innerHTML = anchors.join('\n');
+        document.getElementById('comments').innerHTML = comments.join('\n')
+
+        document.getElementById('grade').setAttribute('value', item.grade)
+        document.getElementById('subject').setAttribute('value', item.subject)
+        document.getElementById('index').setAttribute('value', item.name.toLowerCase().replace('chapter', '').replace(/_/g, '').replace(/\s/, ''))
+
+
         document.title = `${heading} - Parhle Fail Hojayega`;
 
         let saveButton = document.getElementById('save_button');
         if (includes) {
+
             saveButton.setAttribute('onclick', 'unsavePost(socket)')
             saveButton.setAttribute('class', 'save_button')
             saveButton.innerHTML = "Saved!"
+
         } else if (includes === false) {
+
             saveButton.setAttribute('onclick', 'savePost(socket)')
             saveButton.setAttribute('class', 'save_button')
             saveButton.innerHTML = "Save"
+
         }
+
+
 
     });
 
 }
-
 
 function savePost(socket) {
 
@@ -197,3 +235,14 @@ function unsavePost(socket) {
     })
 
 }
+
+// function addComment(socket) {
+//     console.log('Test')
+//
+//     const comment = document.getElementById('add_comment');
+//     console.log(comment)
+//
+//     if (!comment) return;
+//
+//     socket.emit('add_comment', comment)
+// }

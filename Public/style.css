@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Glory:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap');
 
 /*<a href="https://www.flaticon.com/free-icons/buffering" title="buffering icons">Buffering icons created by muhammad atho' - Flaticon</a>*/
 
@@ -166,6 +167,41 @@ div.stray {
 
 }
 
+div.comment_section {
+    box-sizing: border-box;
+    background: #00000055;
+    font-size: 15px;
+    padding: 10px;
+    font-family: 'Catamaran', sans-serif;
+}
+
+div#comment_section_intro {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    color: #8d8d8d;
+}
+
+div.comment {
+    margin: 0 !important;
+    border: 1px solid #1d1d1d;
+    padding: 5px;
+}
+
+.comment_thumbnail_img {
+    display: inline-block;
+    float: left;
+    width: 50px;
+    border: 1px solid #000000;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+span.comment_username {
+    color: #FF544D;
+    font-weight: bold;
+}
+
 /*
     Modifying anchor tags
 */
@@ -232,8 +268,6 @@ form.standard_form {
     padding: 15px;
 }
 
-
-
 label {
     display: block;
     margin: 15% auto;
@@ -294,6 +328,27 @@ button#login, button#register {
 a#s_button {
     margin: 0;
     text-align: center;
+}
+
+textarea.add_comment {
+    display: block;
+    width: 90%;
+    padding: 5px;
+    background: none;
+    transition: 0.8s;
+    float: left;
+    margin-right: 1%;
+}
+
+textarea.add_comment:focus {
+    background: white;
+    height: 50px;
+    transition: 0.8s;
+
+}
+
+input.comment_submit {
+    margin: 0 auto;
 }
 
 .tooltip {

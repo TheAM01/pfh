@@ -4,7 +4,6 @@ import db from "./database.js";
 
 class User {
 
-
     constructor(username, email, password, grade) {
 
         let normal = Math.floor(Math.random() * 10);
@@ -32,4 +31,36 @@ class User {
     }
 }
 
-export {User};
+
+class NoteSchema {
+
+    constructor(id, grade, subject, index, images, url) {
+        this.id = id
+        this.title = index;
+        this.subject = subject;
+        this.grade = grade;
+        this.normals = images.length;
+        this.images = images
+        this.url = url;
+        this.comments = []
+    }
+
+    async register () {
+        if (!this.id) throw "No ID."
+        await db.set(this.id.toLowerCase().replace(/\s/g, ""), this)
+    }
+
+}
+
+class CommentSchema {
+
+    constructor(user, comment, time, parentItem) {
+        this.user = user.username;
+        this.thumbnail = user.avatar;
+        this.comment = comment;
+        this.timestamp = time;
+        this.parentItem = parentItem
+    }
+}
+
+export {User, NoteSchema, CommentSchema};

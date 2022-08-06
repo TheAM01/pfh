@@ -59,6 +59,19 @@
                 <img id='buffer' src="/cdn/buffering.png" alt="buffer">
             </div>
         </div>
+        <div class="comment_section">
+            <div id="comment_section_intro">Log in or sign up to join the comments.</div>
+            <form name="comment_form" class="comment_form" id="comment_form" action="/comment" method="post" style="display: none;">
+                <textarea name="comment" id="add_comment" class="add_comment" placeholder="Join the discussion."></textarea>
+
+                <input type="hidden" id="grade" name="grade" value="">
+                <input type="hidden" id="subject" name="subject" value="">
+                <input type="hidden" id="index" name="index" value="">
+
+                <input type="submit" name="submit" value="Submit" class="comment_submit">
+            </form>
+            <div id="comments"></div>
+        </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>

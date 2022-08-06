@@ -1,5 +1,6 @@
 import db from './database.js'
 import util from "./util.js";
+import * as Console from "console";
 
 String.prototype.capitalizeInitial = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -43,7 +44,8 @@ function socketHandler (socket, io, store) {
 
     socket.on('request_file', async (data) => {
 
-        const item = await db.get(`${data.grade}_${data.subject}_${data.index}`); // get the files from database
+        const item = await db.get(`${data.grade}_${data.subject}_${data.index}`)
+
         const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}` // create standardized heading
 
         const person = await util.checkPerson(req); // get the session user
@@ -104,6 +106,10 @@ function socketHandler (socket, io, store) {
         io.to(socket.id).emit('unsave_post', 200);
 
     });
+
+    socket.on('add_comment', (data) => {
+        console.log(data)
+    })
 
     socket.on('test', () => {
         io.to(socket.id).emit('yes')
