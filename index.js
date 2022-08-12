@@ -9,6 +9,7 @@ import createRoutes from "./Server/routes.js";
 import socketHandler from "./Server/socket-handler.js";
 import db from './Server/database.js'
 import {User} from "./Server/builders.js";
+// import {mail, mailHtml} from "./Server/mailer.js"
 
 const app = express();
 const server = http.createServer(app);
@@ -66,6 +67,8 @@ server.listen(port, async () => {
     console.log(`Listening on port ${port}.`);
     // await onload();
 
+    // await mailHtml("Welcome aboard!", "Welcome to Parhle Fail Hojayega. We hope you enjoy your stay.", {name: 'username', email: 'abdulmueedofficial@gmail.com'})
+
 });
 
 io.engine.on("initial_headers", (headers, req) => {
@@ -80,62 +83,23 @@ io.on('connection', async (socket) => {
 });
 
 async function onload () {
+    console.log("Hello?")
 
+    const list = await db.get('list_alpha');
+    console.log("Hi my name is AAUGHHH!")
 
-    // const chapter = {
-    //     name: 'chapter 10',
-    //     url: '/notes/xi/phys/10',
-    //     normals: images.length,
-    //     subject: 'Physics',
-    //     grade: 'XI',
-    //     images: images
-    // };
-    //
-    // await db.set('xi_phys_10', chapter);
-    // console.log(await db.get('xi_phys_10'))
+    Object.values(list).forEach((item) => {
+        item.grade = item.grade.toUpperCase()
+        item.subject = item.subject.replace('maths', "Mathematics").replace('chem', "Chemistry");
+        item.name = item.name.replace('chapter_', '');
+        item.route = `/notes/${item.id.replace(/_/g, "/")}`
+        item.index = item.name;
+    });
 
-
-    let maths = await db.list('xi_maths');
-
-    maths.forEach(async stuff => {
-
-        const item = await db.get(stuff)
-        const images = item.images;
-
-        const newItem = {
-            name: item.name.replace(/\s/g, ''),
-            url: item.url,
-            normals: images.length,
-            subject: 'Mathematics',
-            grade: 'XI',
-            images: images
-        };
-
-        await db.set(stuff, newItem);
-
-    })
-    // return console.log(await db.get('list_alpha'))
-    //
-    // let list = await db.get('list_alpha');
-    // let exercises = await db.list('xi_chem');
-    //
-    // console.log('Initializing list creation for chem...')
-    //
-    // for (let i = 0; i < exercises.length; i++) {
-    //
-    //     let stuff = await db.get(exercises[i]);
-    //
-    //     list[exercises[i].replace('.', '_')] = {
-    //
-    //         id: exercises[i],
-    //         grade: exercises[i].split('_')[0],
-    //         subject: exercises[i].split('_')[1],
-    //         name: stuff.name.replace(/\s/g, ""),
-    //         images: stuff.normals,
-    //         source: stuff.url
-    //
-    //     }
-    // }
-    // console.log(list)
-    // await db.set('list_alpha', list)
+    await db.set('list_alpha', list)
 }
+
+//TODO: Add mailing service ("https://replit.com/@TheAM01/urban-dictionary-test/"); [Password: "babyimarenegade"];
+//TODO: Add user's name on register;
+//TODO: Add <confirm_password> field on register;
+//TODO: Add forgot password system;

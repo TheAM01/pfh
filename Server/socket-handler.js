@@ -107,6 +107,31 @@ function socketHandler (socket, io, store) {
 
     });
 
+    socket.on('request_sources', async () => {
+        const list = await db.get('list_alpha'),
+            tableData = [`
+            <tr>
+                <th>Grade</th>
+                <th>Subject</th>
+                <th>Index</th>
+                <th>Link</th>
+                <th>Source</th>
+            </tr> 
+            `];
+        Object.values(list).forEach(item => {
+            tableData.push(`
+            <tr>
+                <td>${item.grade}</td>
+                <td>${item.subject}</td>
+                <td>${item.index}</td>
+                <td><a href="${item.route}" class="notes_source">Link</a></td>
+                <td><a href="${item.source}" class="notes_source">Source</a></td>
+            </tr> 
+            `)
+        });
+        socket.emit('request_sources', tableData)
+    })
+
     socket.on('add_comment', (data) => {
         console.log(data)
     })

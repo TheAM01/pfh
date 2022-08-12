@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" type="image/x-icon" href="/cdn/pwfh_logo.png">
-    <title>Profile - Parhle Fail Hojayega</title>
+    <title>Sources - Parhle Fail Hojayega</title>
 </head>
 
 <body>
@@ -47,54 +47,23 @@
 
 <div class="body workspace">
     <div class="intro_head">
-        <h1>User profile</h1>
+        <h1>Sources</h1>
     </div>
     <div class="content">
-        <div class="user_avatar" id="user_avatar"></div>
+        <p>Below are all the sources that we obtain notes from. Sources are marked by grade & subject.</p>
+        <div class="stray">Refresh the page a few times if page doesn't work.</div>
+        <table id="sources_table">
 
-        <div class="user_data">
-
-            <div class="user_key_value_pair">
-                <span class="user_key">Username: </span><span class="user_value" id="username"></span>
-            </div>
-
-            <div class="user_key_value_pair">
-                <span class="user_key">Saved notes: </span><div class="user_saves" id="saves"></div>
-            </div>
-
-        </div>
+        </table>
 
     </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/script.js"></script>
 <script type="text/javascript">
-
-    const socket = io();
-
-    validatePerson(socket);
-
-    socket.emit('create_profile');
-
-    socket.on('create_profile', (userData) => {
-
-
-        document.getElementById('user_avatar').innerHTML = `<img src='${userData.avatar}' class="avatar_img">`
-        document.getElementById('username').innerHTML = userData.username;
-
-        const saves = document.getElementById('saves');
-        let rawSaves = [];
-
-        if (!userData.savedUrls[0]) return saves.innerHTML = "No saved pages. The pages that you save will show up here."
-
-        userData.savedUrls.forEach(item => {
-            rawSaves.push(`<a href="${item.url}">${item.title}</a>`)
-        });
-
-        saves.innerHTML = rawSaves.join('<br>\n');
-
-    })
-    // loadProfile(socket)
+    const socket = io()
+    validatePerson(socket)
+    getSourcesList(socket)
 </script>
 </body>
 </html>

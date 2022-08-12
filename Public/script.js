@@ -236,13 +236,13 @@ function unsavePost(socket) {
 
 }
 
-// function addComment(socket) {
-//     console.log('Test')
-//
-//     const comment = document.getElementById('add_comment');
-//     console.log(comment)
-//
-//     if (!comment) return;
-//
-//     socket.emit('add_comment', comment)
-// }
+function getSourcesList(socket) {
+
+
+    socket.emit('request_sources');
+
+    socket.on('request_sources', (data) => {
+        const table = document.getElementById('sources_table')
+        table.innerHTML = data.join('\n')
+    })
+}

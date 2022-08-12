@@ -1,5 +1,6 @@
 import db from "../database.js";
 import {User} from "../builders.js";
+// import {mail, mailHtml} from "../mailer.js";
 
 
 async function register (req, res) {
@@ -29,6 +30,8 @@ async function register (req, res) {
     let user = new User(username, email, password, grade);
     await user.register();
     res.redirect('/login?account_created=true');
+
+    // await mailHtml("Welcome aboard!", "Welcome to Parhle Fail Hojayega. We hope you enjoy your stay.", {name: username, email: email})
 
 };
 
