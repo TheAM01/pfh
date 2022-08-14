@@ -54,6 +54,14 @@
 
             <form action="/register" method="POST" name="login" class="standard_form">
                 <div class="input_group">
+                    <label for="first_name">First name</label>
+                    <input type="text" id="first_name" name="first_name" class="standard_input">
+                </div>
+                <div class="input_group">
+                    <label for="last_name">Last name</label>
+                    <input type="text" id="last_name" name="last_name" class="standard_input">
+                </div>
+                <div class="input_group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" class="standard_input">
                 </div>
@@ -64,6 +72,10 @@
                 <div class="input_group">
                     <label for="password">Password</label>
                     <input name="password" type="password" id="password" class="standard_input">
+                </div>
+                <div class="input_group">
+                    <label for="password_confirm">Confirm password</label>
+                    <input name="password_confirm" type="password" id="password_confirm" class="standard_input">
                 </div>
 
                 <div class="input_group">
@@ -106,6 +118,7 @@
         checkUrlParams('username_exists', 'Username already exists. Try logging in or choose another username.')
         checkUrlParams('incomplete_form', 'Please fill out the entire form.')
         checkUrlParams('unsafe_password', 'Password must be at least 8 characters in length.')
+        checkUrlParams('unmatched_passwords', 'Passwords do not match.')
     </script>
 
 </body>

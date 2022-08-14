@@ -8,35 +8,42 @@ function test () {
 
 function createNotesList (socket) {
 
-    socket.emit('db_query', 'list_alpha');
+    socket.emit('create_notes');
 
-    socket.on('db_query_result', val => {
-
-        let list = val
-        let finalArr = []
-        let arr = Object.values(list)
-
-        for (let i=0; i<arr.length; i++) {
-
-            const item = arr[i];
-
-            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
-
-            finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
-
-            // Another way using DOM append.
-
-            // const anchor = document.createElement('a');
-            // anchor.setAttribute('href', `/notes/${item.id.replace(/_/g, '/')}`)
-            // anchor.setAttribute('class', 'notes')
-            // anchor.textContent = heading
-            // document.getElementById('all_notes').appendChild(anchor);
-
-        }
-
-        document.getElementById('all_notes').innerHTML = finalArr.join('<br>');
-
+    socket.on('create_notes', (data) => {
+        const table = document.getElementById('links_table')
+        table.innerHTML = data.join('\n')
     });
+
+    // socket.emit('db_query', 'list_alpha');
+    //
+    // socket.on('db_query_result', val => {
+    //
+    //     let list = val
+    //     let finalArr = []
+    //     let arr = Object.values(list)
+    //
+    //     for (let i=0; i<arr.length; i++) {
+    //
+    //         const item = arr[i];
+    //
+    //         const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
+    //
+    //         finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
+    //
+    //         // Another way using DOM append.
+    //
+    //         // const anchor = document.createElement('a');
+    //         // anchor.setAttribute('href', `/notes/${item.id.replace(/_/g, '/')}`)
+    //         // anchor.setAttribute('class', 'notes')
+    //         // anchor.textContent = heading
+    //         // document.getElementById('all_notes').appendChild(anchor);
+    //
+    //     }
+    //
+    //     document.getElementById('links_table').innerHTML = finalArr.join('<br>');
+
+    // });
 }
 
 function validatePerson (socket) {
@@ -238,11 +245,11 @@ function unsavePost(socket) {
 
 function getSourcesList(socket) {
 
-
     socket.emit('request_sources');
 
     socket.on('request_sources', (data) => {
         const table = document.getElementById('sources_table')
         table.innerHTML = data.join('\n')
-    })
+    });
+
 }

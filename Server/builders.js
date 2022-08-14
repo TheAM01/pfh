@@ -4,14 +4,16 @@ import db from "./database.js";
 
 class User {
 
-    constructor(username, email, password, grade) {
+    constructor(username, firstName, lastName, email, password, grade) {
 
         let normal = Math.floor(Math.random() * 10);
 
         this.username = username;
+        this.name = `${firstName.split(' ')[0]} ${lastName.split(' ')[0]}`
         this.email = email;
         this.password = bcrypt.hashSync(password, 10)
         this.userData = {
+            name: `${firstName.split(' ')[0]} ${lastName.split(' ')[0]}`,
             username: this.username,
             grade: grade,
             savedUrls: []

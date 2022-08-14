@@ -51,7 +51,10 @@
         <div class="sub_content">
             This page contains links to all the notes available on this website.
             <div class="stray">Please refresh the page if the page doesn't load.</div>
-            <p id="all_notes"><img id='buffer' src="/cdn/buffering.png" alt="buffer"></p>
+            <div style="overflow-x: auto;">
+                <table id="links_table">
+                </table>
+            </div>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>

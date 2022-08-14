@@ -5,9 +5,9 @@ import {User} from "../builders.js";
 
 async function register (req, res) {
 
-    const {username, email, password, grade} = req.body;
+    const {username, first_name, last_name, email, password, password_confirm, grade} = req.body;
 
-    if (!username || !email || !password || !grade) {
+    if (!username || !first_name || !last_name || !email || !password|| !password_confirm || !grade) {
         return res.redirect('/register?incomplete_form=true')
     }
 
@@ -27,7 +27,11 @@ async function register (req, res) {
         return res.redirect('/register?unsafe_password=true')
     }
 
-    let user = new User(username, email, password, grade);
+    if (password !== password_confirm) {
+        return res.redirect('/register?unmatched_passwords=true')
+    }
+
+    let user = new User(username, first_name, last_name, email, password, grade);
     await user.register();
     res.redirect('/login?account_created=true');
 

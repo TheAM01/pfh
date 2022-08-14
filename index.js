@@ -65,7 +65,7 @@ server.listen(port, async () => {
     console.clear()
     console.log('Initializing...')
     console.log(`Listening on port ${port}.`);
-    // await onload();
+    await onload();
 
     // await mailHtml("Welcome aboard!", "Welcome to Parhle Fail Hojayega. We hope you enjoy your stay.", {name: 'username', email: 'abdulmueedofficial@gmail.com'})
 
@@ -83,20 +83,7 @@ io.on('connection', async (socket) => {
 });
 
 async function onload () {
-    console.log("Hello?")
 
-    const list = await db.get('list_alpha');
-    console.log("Hi my name is AAUGHHH!")
-
-    Object.values(list).forEach((item) => {
-        item.grade = item.grade.toUpperCase()
-        item.subject = item.subject.replace('maths', "Mathematics").replace('chem', "Chemistry");
-        item.name = item.name.replace('chapter_', '');
-        item.route = `/notes/${item.id.replace(/_/g, "/")}`
-        item.index = item.name;
-    });
-
-    await db.set('list_alpha', list)
 }
 
 //TODO: Add mailing service ("https://replit.com/@TheAM01/urban-dictionary-test/"); [Password: "babyimarenegade"];

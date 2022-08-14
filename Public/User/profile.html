@@ -55,6 +55,10 @@
         <div class="user_data">
 
             <div class="user_key_value_pair">
+                <span class="user_key">Name: </span><span class="user_value" id="name"></span>
+            </div>
+
+            <div class="user_key_value_pair">
                 <span class="user_key">Username: </span><span class="user_value" id="username"></span>
             </div>
 
@@ -78,9 +82,9 @@
 
     socket.on('create_profile', (userData) => {
 
-
         document.getElementById('user_avatar').innerHTML = `<img src='${userData.avatar}' class="avatar_img">`
         document.getElementById('username').innerHTML = userData.username;
+        document.getElementById('name').innerHTML = userData.name;
 
         const saves = document.getElementById('saves');
         let rawSaves = [];
