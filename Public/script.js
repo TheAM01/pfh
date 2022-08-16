@@ -6,44 +6,56 @@ function test () {
     console.log("Hello, Wilson!")
 }
 
-function createNotesList (socket) {
+function createNotesTable (socket) {
+
+    document.getElementById('type_all_notes').innerHTML = `<img id='buffer' src="/cdn/buffering.png" alt="buffer">`
 
     socket.emit('create_notes');
 
     socket.on('create_notes', (data) => {
-        const table = document.getElementById('links_table')
-        table.innerHTML = data.join('\n')
+        const table = document.getElementById('type_all_notes')
+        table.innerHTML = `<table id="links_table">${data.join('\n')}</table>`
+        document.getElementById('change_view_type').setAttribute("onclick", "createNotesList(socket)")
+        document.getElementById('change_view_type').innerHTML = "Show list"
     });
 
-    // socket.emit('db_query', 'list_alpha');
-    //
-    // socket.on('db_query_result', val => {
-    //
-    //     let list = val
-    //     let finalArr = []
-    //     let arr = Object.values(list)
-    //
-    //     for (let i=0; i<arr.length; i++) {
-    //
-    //         const item = arr[i];
-    //
-    //         const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
-    //
-    //         finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
-    //
-    //         // Another way using DOM append.
-    //
-    //         // const anchor = document.createElement('a');
-    //         // anchor.setAttribute('href', `/notes/${item.id.replace(/_/g, '/')}`)
-    //         // anchor.setAttribute('class', 'notes')
-    //         // anchor.textContent = heading
-    //         // document.getElementById('all_notes').appendChild(anchor);
-    //
-    //     }
-    //
-    //     document.getElementById('links_table').innerHTML = finalArr.join('<br>');
+}
 
-    // });
+function createNotesList (socket) {
+
+    document.getElementById('type_all_notes').innerHTML = `<img id='buffer' src="/cdn/buffering.png" alt="buffer">`
+
+    socket.emit('db_query', 'list_gamma');
+
+    socket.on('db_query_result', val => {
+
+        let list = val
+        let finalArr = []
+        let arr = Object.values(list)
+
+        for (let i=0; i<arr.length; i++) {
+
+            const item = arr[i];
+
+            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
+
+            finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
+
+            // Another way using DOM append.
+
+            // const anchor = document.createElement('a');
+            // anchor.setAttribute('href', `/notes/${item.id.replace(/_/g, '/')}`)
+            // anchor.setAttribute('class', 'notes')
+            // anchor.textContent = heading
+            // document.getElementById('all_notes').appendChild(anchor);
+
+        }
+
+        document.getElementById('type_all_notes').innerHTML = finalArr.join('<br>');
+        document.getElementById('change_view_type').setAttribute("onclick", "createNotesTable(socket)");
+        document.getElementById('change_view_type').innerHTML = "Show table"
+
+    });
 }
 
 function validatePerson (socket) {

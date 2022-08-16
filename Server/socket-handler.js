@@ -110,7 +110,7 @@ function socketHandler (socket, io, store) {
     socket.on('create_notes', async () => {
         const list = await db.get('list_gamma'),
             tableData = [`
-            <tr>
+            <tr class="allow_focus">
                 <th>Grade</th>
                 <th>Subject</th>
                 <th>Index</th>
@@ -119,7 +119,7 @@ function socketHandler (socket, io, store) {
             `];
         list.forEach(item => {
             tableData.push(`
-            <tr>
+            <tr class="allow_focus">
                 <td>${item.grade}</td>
                 <td>${item.subject}</td>
                 <td>${item.index}</td>
@@ -133,7 +133,7 @@ function socketHandler (socket, io, store) {
     socket.on('request_sources', async () => {
         const list = await db.get('list_gamma'),
             tableData = [`
-            <tr>
+            <tr class="allow_focus">
                 <th>Grade</th>
                 <th>Subject</th>
                 <th>Index</th>
@@ -142,7 +142,7 @@ function socketHandler (socket, io, store) {
             `];
         list.forEach(item => {
             tableData.push(`
-            <tr>
+            <tr class="allow_focus">
                 <td>${item.grade}</td>
                 <td>${item.subject}</td>
                 <td>${item.index}</td>

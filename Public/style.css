@@ -24,6 +24,20 @@ body {
     color: white;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+    background: #1d1d1d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2e2e2e;
+}
+
 p {
     margin-bottom: 20px;
     margin-top: 5px;
@@ -109,6 +123,10 @@ div.logo_container {
     color: #ffffff;
     width: 400px;
     padding: 5px;
+}
+
+h1 {
+    margin-bottom: 20px;
 }
 
 div.logo_container:hover {
@@ -200,6 +218,15 @@ div.comment {
 span.comment_username {
     color: #FF544D;
     font-weight: bold;
+}
+
+.change_view_type_container {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px !important;
+    margin-bottom: 10px !important;
+    text-align: center;
 }
 
 /*
@@ -297,6 +324,18 @@ input {
 
 button:hover {
     cursor: pointer;
+}
+
+button#change_view_type {
+    background: none;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    text-align: center;
+}
+
+button#change_view_type:hover {
+    box-shadow: 1px 1px #1d1d1d;
 }
 
 div.input_group {
@@ -478,6 +517,10 @@ tr:hover {
     background:  #FF544D;
 }
 
+tr.allow_focus:focus-within {
+    background:  #FF544D;
+}
+
 tr:nth-child(1):hover {
     background: none;
 }
@@ -493,6 +536,10 @@ table {
 }
 
 @media screen and (max-width: 1000px) { /** Mobile device **/
+
+    table#sources_table, table.links_table {
+        font-size: 15px;
+    }
 
     .input_group {
         width: 100% !important;

@@ -15,7 +15,7 @@ const app = express();
 const server = http.createServer(app);
 const dir = path.resolve()
 const store = new session.MemoryStore()
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000 || 3003;
 const secret = process.env.COOKIE_SECRET || "moshimoshi69420"
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 const sessionMiddleware = session({
@@ -87,6 +87,4 @@ async function onload () {
 }
 
 //TODO: Add mailing service ("https://replit.com/@TheAM01/urban-dictionary-test/"); [Password: "babyimarenegade"];
-//TODO: Add user's name on register;
-//TODO: Add <confirm_password> field on register;
 //TODO: Add forgot password system;
