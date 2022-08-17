@@ -61,14 +61,13 @@ div.workspace {
     overflow: hidden;
 }
 
-div.navi_bar {
+div.navi_bar, div.search_bar {
     font-size: 0;
     background: #1d1d1d7a;
     backdrop-filter: blur(7px);
     box-shadow: 1px 1px #0000009b;
     border: solid #000000 1px;
     width: 90%;
-    /* border: solid #000000 3px; */
     border-radius: 10px;
     display: table;
     margin: 30px auto auto auto;
@@ -535,6 +534,58 @@ table {
     overflow: scroll;
 }
 
+form.search {
+    padding: 0;
+    /*border: #000000 solid 1px;*/
+    margin: 0;
+    transition: 0.8s;
+    width: 100%;
+}
+
+input.search_input {
+    box-sizing: border-box;
+    font-size: 15px;
+    display: inline-flex;
+    padding: 10px;
+    width: 90%;
+    margin: 0;
+}
+
+input.search_submit {
+    color: #FF544D;
+    width: 10%;
+    background: #2e2e2e;
+}
+
+.cookie_consent_box {
+    display: none;
+    background: #3d3d3d;
+    padding: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 500px;
+    max-width: 85%;
+    border: 1px solid #1d1d1d;
+    border-radius: 5px;
+    cursor: default;
+    animation: appear 1s forwards;
+}
+
+.close_button {
+    cursor: pointer;
+    margin-left: 15px;
+    color: #fff;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.close_button:hover {
+    color: #f00;
+}
+
 @media screen and (max-width: 1000px) { /** Mobile device **/
 
     table#sources_table, table.links_table {
@@ -581,4 +632,15 @@ table {
     to {
         transform: rotate(359deg);
     }
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+
 }

@@ -23,21 +23,22 @@ function socketHandler (socket, io, store) {
 
     socket.on('user_validation', async (obj) => {
 
-        if (!socket.handshake.headers.cookie) return await io.to(socket.id).emit('user_validation', false)
-        let sessionId = socket.handshake.headers.cookie.split(' ')
+        let pseudoConsent = !!req.session.cookieConsent;
+        if (!socket.handshake.headers.cookie) return await io.to(socket.id).emit('user_validation', {authenticated: false, cookieConsent: pseudoConsent})
+        let sessionId = socket.handshake.headers.cookie.split(' ');
 
         sessionId = sessionId.find(c => c.startsWith("connect.sid"));
 
-        if (!sessionId) return await io.to(socket.id).emit('user_validation', false);
+        if (!sessionId) return await io.to(socket.id).emit('user_validation', {authenticated: false, cookieConsent: pseudoConsent});
 
         sessionId = sessionId.replace('connect.sid=s%3A', '').split('.')[0];
 
-        let trt = store.sessions[sessionId]
+        let activeSession = store.sessions[sessionId];
 
-        if (!trt) {
-            return await io.to(socket.id).emit('user_validation', {authenticated: false});
+        if (!activeSession) {
+            return await io.to(socket.id).emit('user_validation', {authenticated: false, cookieConsent: pseudoConsent});
         } else {
-            return await io.to(socket.id).emit('user_validation', {authenticated: true});
+            return await io.to(socket.id).emit('user_validation', {authenticated: true, cookieConsent: pseudoConsent});
         }
 
     });
@@ -123,11 +124,11 @@ function socketHandler (socket, io, store) {
                 <td>${item.grade}</td>
                 <td>${item.subject}</td>
                 <td>${item.index}</td>
-                <td><a href="${item.route}" class="notes_link">Link</a></td>
+                <td><a href="${item.route || item.url}" class="notes_link">Link</a></td>
             </tr> 
             `)
         });
-        socket.emit('create_notes', tableData)
+        io.to(socket.id).emit('create_notes', tableData)
     })
 
     socket.on('request_sources', async () => {
@@ -150,15 +151,15 @@ function socketHandler (socket, io, store) {
             </tr> 
             `)
         });
-        socket.emit('request_sources', tableData)
-    })
+        io.to(socket.id).emit('request_sources', tableData)
+    });
 
     socket.on('add_comment', (data) => {
         console.log(data)
     })
 
     socket.on('test', () => {
-        io.to(socket.id).emit('yes')
+        io.to(socket.id).emit("done i think")
     });
 
 }

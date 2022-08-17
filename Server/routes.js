@@ -16,7 +16,7 @@ function routes (app, dir, ext) {
 
     // Static files
 
-    app.get('/', (req, res, next) => {
+    app.get('/', (req, res) => {
         res.sendFile(dir + 'Static/home.html')
     });
 
@@ -28,7 +28,7 @@ function routes (app, dir, ext) {
         res.sendFile(dir + 'Static/all.html')
     });
 
-    app.get('/contact', (req, res, next) => {
+    app.get('/contact', (req, res) => {
         res.sendFile(dir + 'Static/contact.html');
     });
 
@@ -47,7 +47,7 @@ function routes (app, dir, ext) {
 
     // User content
 
-    app.get('/login', (req, res, next) => {
+    app.get('/login', (req, res) => {
         res.sendFile(dir + 'User/login.html');
     })
 

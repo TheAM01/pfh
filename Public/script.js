@@ -4,6 +4,7 @@ String.prototype.capitalizeInitial = function () {
 
 function test () {
     console.log("Hello, Wilson!")
+    setCookie("user_cookie_consent", "idk", 1)
 }
 
 function createNotesTable (socket) {
@@ -36,8 +37,9 @@ function createNotesList (socket) {
         for (let i=0; i<arr.length; i++) {
 
             const item = arr[i];
+            console.log(item)
 
-            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
+            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.capitalizeInitial()}`
 
             finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
 
@@ -78,6 +80,17 @@ function validatePerson (socket) {
             if (comment) comment.innerHTML = "Join the discussion by typing a comment!"
             if(commentForm) commentForm.setAttribute('style', 'display: inline;')
 
+        }
+
+        const consent = !!getCookie("user_cookie_consent");
+        const cookieBox = document.getElementById("cookie_consent_box");
+
+        if (!cookieBox) return;
+
+        if (consent) {
+             cookieBox.style.display = "none";
+        } else {
+             cookieBox.style.display = "inline";
         }
 
     });
@@ -155,7 +168,7 @@ function getFiles(socket) {
         item.images.forEach((img, index) => {
             anchors.push(`<img src="${img}" class="notes_image" alt="Resource image ${index + 1}">`)
         });
-        anchors.push(`<a href="${item.url}" class="credits_link">Source</a>`)
+        anchors.push(`<a href="${item.source}" class="credits_link">Source</a>`)
 
         if(!item.comments) item.comments = []
 
@@ -182,7 +195,6 @@ function getFiles(socket) {
         document.getElementById('grade').setAttribute('value', item.grade)
         document.getElementById('subject').setAttribute('value', item.subject)
         document.getElementById('index').setAttribute('value', item.name.toLowerCase().replace('chapter', '').replace(/_/g, '').replace(/\s/, ''))
-
 
         document.title = `${heading} - Parhle Fail Hojayega`;
 
@@ -264,4 +276,42 @@ function getSourcesList(socket) {
         table.innerHTML = data.join('\n')
     });
 
+}
+
+function acceptCookies(element) {
+
+    deleteCookie('user_cookie_consent');
+    setCookie('user_cookie_consent', 'true', 1);
+    element.parentElement.style.display = "none";
+
+}
+
+function setCookie(cookieName, cookieValue, expirationDays) {
+    const date = new Date();
+    date.setTime(date.getTime() + (expirationDays*24*60*60*1000));
+    let expires = date.toUTCString();
+    document.cookie = `${cookieName}=${cookieValue}; expires=${expires}; path=/`
+}
+
+function deleteCookie(cookieName) {
+    const date = new Date();
+    date.setTime(date.getTime() + (24*60*60*1000));
+    let expires = date.toUTCString();
+    document.cookie = `${cookieName}=; expires=${expires}; path=/`
+}
+
+function getCookie(cookieName) {
+    let name = `${cookieName}=`;
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let cookies = decodedCookie.split(';');
+    for(let i = 0; i <cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return null;
 }

@@ -21,6 +21,14 @@ export default async function getNotes (req, res, dir) {
         return res.redirect(`/notes/${grade}/${subject}/${index}`)
     }
 
+    if (
+        subject === 'physics' ||
+        subject === 'physic'
+    ) {
+        subject = 'phys'
+        return res.redirect(`/notes/${grade}/${subject}/${index}`)
+    }
+
     const item = await db.get(`${grade}_${subject}_${index}`);
 
     if (!item) return res.sendFile(dir + 'Static/not-found.html');

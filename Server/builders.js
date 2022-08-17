@@ -36,20 +36,23 @@ class User {
 
 class NoteSchema {
 
-    constructor(id, grade, subject, index, images, url) {
-        this.id = id
-        this.title = index;
-        this.subject = subject;
+    constructor(id, name, index, grade, subject, url, source, images) {
+        this.id = id;
+        this.name = name;
+        this.index = index;
         this.grade = grade;
+        this.subject = subject;
+        this.url = url;
+        this.source = source;
         this.normals = images.length;
         this.images = images
-        this.url = url;
         this.comments = []
     }
 
     async register () {
         if (!this.id) throw "No ID."
-        await db.set(this.id.toLowerCase().replace(/\s/g, ""), this)
+        await db.set(this.id.toLowerCase().replace(/\s/g, ""), this);
+        console.log(`Successfully registered "${this.id}".`)
     }
 
 }

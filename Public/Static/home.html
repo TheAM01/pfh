@@ -45,6 +45,20 @@
         </a>
     </div>
 
+<!--    <div class="search_bar">-->
+<!--        <form action="/search" method="get" name="search" class="search">-->
+<!--            <input type="text" list="search_scope" class="search_input" placeholder="Search the website...">-->
+<!--            <datalist id="search_scope">-->
+<!--                <option value="XI Mathematics 1">-->
+<!--                <option value="XI Mathematics 2">-->
+<!--                <option value="XI Mathematics 3">-->
+<!--                <option value="XI Mathematics 4">-->
+<!--                <option value="XI Mathematics 5">-->
+<!--            </datalist>-->
+<!--            <input type="submit" value="Search" class="search_submit">-->
+<!--        </form>-->
+<!--    </div>-->
+
     <div class="workspace">
         <div class="intro_head">
             <h1>Home</h1>
@@ -84,6 +98,11 @@
         socket.emit('test')
         socket.on('yes', () => console.log('YES!!'))
     </script>
+
+    <div class="cookie_consent_box" id="cookie_consent_box">
+        <span class="close_button" onclick='acceptCookies(this)'>&times;</span>
+        This website uses cookies to enhance your browsing experience and store site data. By continuing to use our website, you agree to our cookie policy.
+    </div>
 
 </body>
 </html>

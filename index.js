@@ -8,7 +8,7 @@ import path from 'path';
 import createRoutes from "./Server/routes.js";
 import socketHandler from "./Server/socket-handler.js";
 import db from './Server/database.js'
-import {User} from "./Server/builders.js";
+import {NoteSchema, User} from "./Server/builders.js";
 // import {mail, mailHtml} from "./Server/mailer.js"
 
 const app = express();
@@ -65,7 +65,7 @@ server.listen(port, async () => {
     console.clear()
     console.log('Initializing...')
     console.log(`Listening on port ${port}.`);
-    await onload();
+    // await onload()
 
     // await mailHtml("Welcome aboard!", "Welcome to Parhle Fail Hojayega. We hope you enjoy your stay.", {name: 'username', email: 'abdulmueedofficial@gmail.com'})
 
@@ -83,6 +83,37 @@ io.on('connection', async (socket) => {
 });
 
 async function onload () {
+
+    //
+    const list = await db.get('list_theta');
+    const physList = await db.list('xi_phys');
+    physList.sort(function(a,b) {
+        return parseInt(a.split('_')[2]) - parseInt(b.split('_')[2])
+    })
+
+    for (let i=0; i<physList.length; i++) {
+        if (physList[i].includes(' ')) continue;
+        if (physList[i].includes('1') && !physList[i].includes('0')) continue
+
+        const item = await db.get(physList[i]);
+
+        console.log(i)
+
+        list.push(
+            {
+                id: item.id,
+                grade: item.grade,
+                subject: item.subject,
+                name: item.name,
+                images: item.normals,
+                source: item.source,
+                url: item.url,
+                index: item.index
+            }
+        )
+    }
+    console.log(list)
+    await db.set('list_theta', list)
 
 }
 
