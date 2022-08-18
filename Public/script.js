@@ -203,7 +203,9 @@ function getFiles(socket) {
         document.getElementById('grade').setAttribute('value', meta[1])
         document.getElementById('subject').setAttribute('value', meta[2])
         document.getElementById('index').setAttribute('value', meta[3])
+
         document.title = `${heading} - Parhle Fail Hojayega`;
+
 
         let saveButton = document.getElementById('save_button');
         if (includes) {

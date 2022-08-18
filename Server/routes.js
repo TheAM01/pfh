@@ -95,6 +95,16 @@ function routes (app, dir, ext) {
         }
         res.sendStatus(404);
 
+    });
+
+    app.get('/policy/:category', (req, res) => {
+
+        const path = `${dir}Policies/${req.params.category}.html`
+        if (fs.existsSync(path)) {
+            return res.sendFile(path)
+        }
+        return res.sendFile(dir + 'Static/not-found.html');
+
     })
 
     app.use((req, res) => {

@@ -110,7 +110,7 @@ div.logo_container {
     font-family: 'Roboto Slab', serif;
     box-shadow: 1px 1px #0000009b;
     backdrop-filter: blur(7px);
-    border: solid #000000 1px;
+    border: double #000000 3px;
     box-sizing: border-box;
     background: #1d1d1d7a;
     text-align: center;
@@ -293,6 +293,7 @@ img#buffer {
     animation: buffer infinite 2s linear;
     margin-left: 5%;
     width: 5%;
+    user-select: none;
 }
 
 form.standard_form {
