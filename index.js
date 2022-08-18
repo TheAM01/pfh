@@ -65,7 +65,7 @@ server.listen(port, async () => {
     console.clear()
     console.log('Initializing...')
     console.log(`Listening on port ${port}.`);
-    // await onload()
+    await onload()
 
     // await mailHtml("Welcome aboard!", "Welcome to Parhle Fail Hojayega. We hope you enjoy your stay.", {name: 'username', email: 'abdulmueedofficial@gmail.com'})
 
@@ -83,6 +83,8 @@ io.on('connection', async (socket) => {
 });
 
 async function onload () {
+
+    return console.log(await db.get('xi_phys_2'))
 
     //
     const list = await db.get('list_theta');

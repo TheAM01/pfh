@@ -3,6 +3,8 @@ import util from "../util.js";
 import {CommentSchema} from "../builders.js";
 
 export default async function comment (req, res) {
+
+    console.log(req.body)
     const t = new Date()
 
     let {grade, subject, index, comment} = req.body;

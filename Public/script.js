@@ -161,7 +161,14 @@ function getFiles(socket) {
     socket.on('request_file', (data) => {
 
         const {item, includes} = data;
-        const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}`
+        let iDontKnowWhatThisIsCalled;
+
+        if (item.subject.toLowerCase() === 'mathematics') iDontKnowWhatThisIsCalled = ' Exercise '
+        else iDontKnowWhatThisIsCalled = ' '
+
+        const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${parseInt(item.index)}`
+        const description = `${item.subject.capitalizeInitial()}${iDontKnowWhatThisIsCalled}${item.name.replace(/_/g, ' ').capitalizeInitial()}`
+        const meta = new URL(window.location.href).pathname.substring(1).split('/')
         const anchors = [];
         const comments = []
 
@@ -189,13 +196,13 @@ function getFiles(socket) {
         })
 
         document.getElementById('page_heading').innerHTML = heading;
+        document.getElementById('page_description').innerHTML = description;
         document.getElementById('notes_container').innerHTML = anchors.join('\n');
         document.getElementById('comments').innerHTML = comments.join('\n')
 
-        document.getElementById('grade').setAttribute('value', item.grade)
-        document.getElementById('subject').setAttribute('value', item.subject)
-        document.getElementById('index').setAttribute('value', item.name.toLowerCase().replace('chapter', '').replace(/_/g, '').replace(/\s/, ''))
-
+        document.getElementById('grade').setAttribute('value', meta[1])
+        document.getElementById('subject').setAttribute('value', meta[2])
+        document.getElementById('index').setAttribute('value', meta[3])
         document.title = `${heading} - Parhle Fail Hojayega`;
 
         let saveButton = document.getElementById('save_button');
