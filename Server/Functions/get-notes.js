@@ -29,9 +29,15 @@ export default async function getNotes (req, res, dir) {
         return res.redirect(`/notes/${grade}/${subject}/${index}`)
     }
 
-    const item = await db.get(`${grade}_${subject}_${index}`);
+    try {
+        const item = await db.get(`${grade}_${subject}_${index}`);
 
-    if (!item) return res.sendFile(dir + 'Static/not-found.html');
+        if (!item) return res.sendFile(dir + 'Static/not-found.html');
 
-    res.sendFile(dir + 'Dynamic/post-template.html')
+        res.sendFile(dir + 'Dynamic/post-template.html')
+    } catch (err) {
+        console.log(err.toString())
+        return res.sendFile(dir + 'Static/error.html');
+
+    }
 }

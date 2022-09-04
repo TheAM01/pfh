@@ -26,6 +26,18 @@ async function checkPerson (req) {
 
 }
 
+async function checkPersonByEmail (email) {
+
+    const users = await db.get('users');
+
+    if (!email) return null
+
+    let person = users.find(u => bcrypt.compareSync(u.email, email));
+
+    return person.userData
+
+}
+
 async function updatePerson(newUserData) {
 
     const users = await db.get('users');
@@ -43,5 +55,6 @@ async function updatePerson(newUserData) {
 export default {
     checkAuth,
     checkPerson,
-    updatePerson
+    updatePerson,
+    checkPersonByEmail
 }

@@ -16,6 +16,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url('/cdn/background_01.png');
+    /*background: #373737;*/
     background-attachment: fixed;
     /*transform: rotateX(0);*/
     padding: 1%;
@@ -373,6 +374,15 @@ button#login, button#register {
     border-bottom: 0;
     background-color: #ff3f39;
     font-weight: bolder;
+}
+
+button#forgot {
+    margin: auto;
+    border-radius: 10px;
+    border: solid 1px #1d1d1d;
+    background-color: #ff3f39;
+    font-weight: bolder;
+    width: auto;
 }
 
 a#s_button {

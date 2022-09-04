@@ -68,7 +68,7 @@ server.listen(port, async () => {
     console.log(`Listening on port ${port}.`);
     // await onload()
 
-    await mailWelcome({name: 'Abdul Mueed', username: 'TheAM', email: 'abdulmueedofficial@gmail.com'})
+    // await mailWelcome({name: 'Abdul Mueed', username: 'TheAM', email: 'abdulmueedofficial@gmail.com'})
 
 });
 

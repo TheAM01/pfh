@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/cdn/pwfh_logo.png">
+    <title>Not found - Parhle Fail Hojayega</title>
+</head>
+
+<body>
+
+<div class="logo_container">
+    <a class="logo_link" href="/">
+        <b>PFH</b>: Parhle, Fail Hojayega
+    </a>
+</div>
+
+<div class="navi_bar workspace">
+    <a href="/home">
+        <div class="nav_btn">Home</div>
+    </a>
+    <a href="/all">
+        <div class="nav_btn">All notes</div>
+    </a>
+    <a href="/contact">
+        <div class="nav_btn">Contact</div>
+    </a>
+    <a href="/sources">
+        <div class="nav_btn">Sources</div>
+    </a>
+    <a href="/bot">
+        <div class="nav_btn">Bot</div>
+    </a>
+    <a href="/register" class="user" id="secondary_button">
+        <div class="nav_btn" id="secondary_option">
+            Register
+        </div>
+    </a>
+    <a href="/login" class="user" id="primary_button">
+        <div class="nav_btn" id="primary_option">
+            Login
+        </div>
+    </a>
+</div>
+
+<div class="body workspace">
+    <div class="intro_head">
+        <h1>Error</h1>
+    </div>
+    <div class="content">
+        <p>We ran into an error :(</p>
+        <p>
+        Oops! You ran into an error. Sometimes our system breaks and we run into errors. Our team has been informed of this error & this will be fixed very soon. Try again in a few minutes.
+        If problem still persists, <a href="/contact">contact us</a>.
+        </p>
+        <div class="code_block" id="error"></div>
+        <p>Return to <a href="/" style="color:#fc0b03;">home</a>?</p>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/script.js"></script>
+<script type="text/javascript">
+    const socket = io()
+    validatePerson(socket)
+</script>
+</body>
+</html>

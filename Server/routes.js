@@ -8,6 +8,8 @@ import {CommentSchema} from "./builders.js";
 import comment from "./Functions/comment.js";
 import getNotes from "./Functions/get-notes.js";
 import notesApi from "./Functions/notes-api.js";
+import changePassword from "./Functions/change-password.js";
+import forgotPassword from "./Functions/change-password.js";
 
 
 function routes (app, dir, ext) {
@@ -58,6 +60,11 @@ function routes (app, dir, ext) {
     app.get('/profile', (req, res) => {
         if (!util.checkAuth(req, ext.store)) return res.redirect('/login?session_confirmation=true')
         res.sendFile(dir + 'User/profile.html');
+    });
+
+    app.get('/forgot-password', (req, res) => {
+        if (!!util.checkAuth(req, ext.store)) return res.redirect('/home');
+        res.sendFile(dir + "User/forgot-password.html")
     })
 
     app.post('/login', async (req, res) => {
@@ -67,6 +74,10 @@ function routes (app, dir, ext) {
     app.post('/register', async (req, res) => {
         await register(req, res);
     });
+
+    app.post('/forgot-password', async (req, res) => {
+        await forgotPassword(req, res);
+    })
 
     app.post('/comment', comment)
 
