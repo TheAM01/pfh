@@ -10,13 +10,21 @@
 
 <body>
 
-    <div class="logo_container">
-        <a class="logo_link" href="/">
-            <b>PFH</b>: Parhle, Fail Hojayega
-        </a>
+<!--    <div class="logo_container">-->
+<!--        <a class="logo_link" href="/">-->
+<!--            <b>PFH</b>: Parhle, Fail Hojayega-->
+<!--        </a>-->
+<!--    </div>-->
+    <div class="open_nav_parent">
+        <div class="open_nav" onclick="openNav()">
+            &#9776;
+        </div>
     </div>
 
-    <div class="navi_bar">
+    <div class="navi_bar" id="navi_bar">
+        <div class="nav_btn" id="close_navi_bar" onclick="closeNav()" style="display: none;">
+            &times;
+        </div>
 <!--        <div class="logo_container"><img src="/cdn/pwfh_logo4.png" alt="logo" class="logo_img"></div>-->
         <a href="/home">
             <div class="nav_btn">Home</div>
@@ -71,12 +79,6 @@
             <a href="https://discord.gg/VJ8jHWTj4K">Discord server</a>.
             </p>
             <div class="content_head">
-                <h2>About the author</h2>
-            </div>
-            <p>Anyways, if you&rsquo;re here, you are probably looking for notes so start looking for notes from the menu on
-                the top.
-            </p>
-            <div class="content_head">
                 <h2>About the project</h2>
             </div>
             <p>
@@ -96,7 +98,7 @@
         const socket = io()
         validatePerson(socket)
         socket.emit('test')
-        socket.on('yes', () => console.log('YES!!'))
+        socket.on('yes', () => console.log('YES!!'));
     </script>
 
     <div class="cookie_consent_box" id="cookie_consent_box">

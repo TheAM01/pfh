@@ -17,7 +17,16 @@
 </div>
 
 
-<div class="navi_bar workspace">
+<div class="open_nav_parent">
+    <div class="open_nav" onclick="openNav()">
+        &#9776;
+    </div>
+</div>
+
+<div class="navi_bar" id="navi_bar">
+    <div class="nav_btn" id="close_navi_bar" onclick="closeNav()" style="display: none;">
+        &times;
+    </div>
     <a href="/home">
         <div class="nav_btn">Home</div>
     </a>

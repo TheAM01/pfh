@@ -85,37 +85,18 @@ io.on('connection', async (socket) => {
 
 async function onload () {
 
-    return console.warn("Check \"onload\" function!")
-
-    const list = await db.get('list_theta');
-    const physList = await db.list('xi_phys');
-    physList.sort(function(a,b) {
-        return parseInt(a.split('_')[2]) - parseInt(b.split('_')[2])
+    const phys = await db.get('list_test_phys');
+    const math = await db.get('list_test_maths');
+    const chem = await db.get('list_test_chem')
+    const chem2 = chem.sort((a, b) => {
+        return parseFloat(a.index) - parseFloat(b.index);
     })
 
-    for (let i=0; i<physList.length; i++) {
-        if (physList[i].includes(' ')) continue;
-        if (physList[i].includes('1') && !physList[i].includes('0')) continue
 
-        const item = await db.get(physList[i]);
+    const array = [...chem2, ...math, ...phys];
+    // return console.log([chem2, array])
 
-        console.log(i)
-
-        list.push(
-            {
-                id: item.id,
-                grade: item.grade,
-                subject: item.subject,
-                name: item.name,
-                images: item.normals,
-                source: item.source,
-                url: item.url,
-                index: item.index
-            }
-        )
-    }
-    console.log(list)
-    await db.set('list_theta', list)
+    await db.set('list_theta', array)
 
 }
 

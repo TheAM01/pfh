@@ -109,7 +109,8 @@ function socketHandler (socket, io, store) {
     });
 
     socket.on('create_notes', async () => {
-        const list = await db.get('list_gamma'),
+        const listName = process.env.LIST_VERSION || 'list_theta'
+        const list = await db.get(listName),
             tableData = [`
             <tr class="allow_focus">
                 <th>Grade</th>
@@ -132,7 +133,8 @@ function socketHandler (socket, io, store) {
     })
 
     socket.on('request_sources', async () => {
-        const list = await db.get('list_gamma'),
+        const listName = process.env.LIST_VERSION || 'list_theta'
+        const list = await db.get(listName),
             tableData = [`
             <tr class="allow_focus">
                 <th>Grade</th>

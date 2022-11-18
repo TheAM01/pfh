@@ -7,6 +7,27 @@ function test () {
     setCookie("user_cookie_consent", "idk", 1)
 }
 
+function openNav() {
+
+    document.getElementById("navi_bar").style.width = "250px";
+
+    setTimeout(() => {
+        let collection = document.getElementsByClassName("nav_btn");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].style.display = "block";
+        }
+    }, 500)
+
+}
+
+function closeNav() {
+    const collection = document.getElementsByClassName("nav_btn");
+    for (let i = 0; i < collection.length; i++) {
+        collection[i].style.display = "none";
+    }
+    document.getElementById("navi_bar").style.width = "0";
+}
+
 function createNotesTable (socket) {
 
     document.getElementById('type_all_notes').innerHTML = `<img id='buffer' src="/cdn/buffering.png" alt="buffer">`
@@ -26,7 +47,7 @@ function createNotesList (socket) {
 
     document.getElementById('type_all_notes').innerHTML = `<img id='buffer' src="/cdn/buffering.png" alt="buffer">`
 
-    socket.emit('db_query', 'list_gamma');
+    socket.emit('db_query', 'list_theta');
 
     socket.on('db_query_result', val => {
 
@@ -37,9 +58,9 @@ function createNotesList (socket) {
         for (let i=0; i<arr.length; i++) {
 
             const item = arr[i];
-            console.log(item)
+            // console.log(item)
 
-            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.capitalizeInitial()}`
+            const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.index}`
 
             finalArr.push(`<a href='/notes/${item.id.replace(/_/g, '/')}' class='notes'>${heading}</a>`)
 

@@ -33,7 +33,6 @@ class User {
     }
 }
 
-
 class NoteSchema {
 
     constructor(id, name, index, grade, subject, url, source, images) {
@@ -51,7 +50,7 @@ class NoteSchema {
 
     async register () {
         if (!this.id) throw "No ID."
-        await db.set(this.id.toLowerCase().replace(/\s/g, ""), this);
+        // await db.set(this.id.toLowerCase().replace(/\s/g, ""), this);
         console.log(`Successfully registered "${this.id}".`)
     }
 
@@ -66,6 +65,21 @@ class CommentSchema {
         this.timestamp = time;
         this.parentItem = parentItem
     }
+}
+
+class ListItemSchema {
+
+    constructor(obj) {
+        this.id = obj.id;
+        this.name = obj.name;
+        this.index = obj.index;
+        this.grade = obj.grade;
+        this.subject = obj.subject;
+        this.url = obj.url;
+        this.source = obj.source;
+        this.normals = obj.normals;
+    }
+
 }
 
 export {User, NoteSchema, CommentSchema};
