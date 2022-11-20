@@ -315,9 +315,10 @@ img.avatar_img {
 
 img#buffer {
     animation: buffer infinite 2s linear;
-    margin-left: 5%;
-    width: 5%;
+    margin: auto;
+    width: 30px;
     user-select: none;
+    display: block;
 }
 
 form.standard_form {
@@ -621,6 +622,11 @@ input.search_submit {
 }
 
 @media screen and (max-width: 1000px) { /** Mobile device **/
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        background: #1d1d1d;
+    }
 
     .open_nav_parent {
         display: inline;

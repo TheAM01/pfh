@@ -229,13 +229,17 @@ function getFiles(socket) {
 
 
         let saveButton = document.getElementById('save_button');
-        if (includes) {
+
+        console.log(includes)
+        if (includes === true) {
 
             saveButton.setAttribute('onclick', 'unsavePost(socket)')
             saveButton.setAttribute('class', 'save_button')
             saveButton.innerHTML = "Saved!"
 
-        } else if (includes === false) {
+        } else if (!includes) {
+
+            console.log('xd')
 
             saveButton.setAttribute('onclick', 'savePost(socket)')
             saveButton.setAttribute('class', 'save_button')

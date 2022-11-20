@@ -18,6 +18,11 @@ function routes (app, dir, ext) {
 
     // Static files
 
+    app.get('/test', async (req, res) => {
+        console.log(await util.checkPerson(req, ext.store))
+        res.send('goy')
+    })
+
     app.get('/', (req, res) => {
         res.sendFile(dir + 'Static/home.html')
     });

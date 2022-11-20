@@ -47,13 +47,15 @@ function socketHandler (socket, io, store) {
 
         const item = await db.get(`${data.grade}_${data.subject}_${data.index}`)
 
-        const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.name.replace(/_/g, ' ').capitalizeInitial()}` // create standardized heading
+        console.log(item)
+        const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.index}` // create standardized heading
 
         const person = await util.checkPerson(req); // get the session user
         let includes
 
         if (!person) includes = null // if no user, return null
-        else includes = !!person.savedUrls.find(u => u.title === heading); // check if person has saved this url
+
+        else includes = !!person.savedUrls.find(u => u.title.toLowerCase() === heading.toLowerCase()); // check if person has saved this url
 
         io.to(socket.id).emit('request_file', {item, includes});
 
@@ -80,9 +82,13 @@ function socketHandler (socket, io, store) {
 
     socket.on('save_post', async (data) => {
 
+        console.log(data)
+
         if (!req.session.user) return io.to(socket.id).emit('save_post', 400);
 
         const person = await util.checkPerson(req);
+
+        if (person.savedUrls.includes(data)) return
 
         person.savedUrls.push(data);
 
