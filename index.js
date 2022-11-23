@@ -7,7 +7,7 @@ import path from 'path';
 
 import createRoutes from "./Server/routes.js";
 import socketHandler from "./Server/socket-handler.js";
-import db from './Server/database.js'
+import db, {cb} from './Server/database.js'
 import {NoteSchema, User} from "./Server/builders.js";
 import {mailWelcome} from "./Server/mailer.js";
 // import {mail, mailHtml} from "./Server/mailer.js"
@@ -85,19 +85,7 @@ io.on('connection', async (socket) => {
 
 async function onload () {
 
-    const phys = await db.get('list_test_phys');
-    const math = await db.get('list_test_maths');
-    const chem = await db.get('list_test_chem')
-    const chem2 = chem.sort((a, b) => {
-        return parseFloat(a.index) - parseFloat(b.index);
-    })
-
-
-    const array = [...chem2, ...math, ...phys];
-    // return console.log([chem2, array])
-
-    await db.set('list_theta', array)
-
+    console.log('Done...')
 }
 
 //TODO: Add mailing service ("https://replit.com/@TheAM01/urban-dictionary-test/"); [Password: "babyimarenegade"];

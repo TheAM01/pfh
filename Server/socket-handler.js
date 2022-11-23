@@ -47,7 +47,7 @@ function socketHandler (socket, io, store) {
 
         const item = await db.get(`${data.grade}_${data.subject}_${data.index}`)
 
-        console.log(item)
+
         const heading = `${item.grade.toUpperCase()} ${item.subject.capitalizeInitial()} ${item.index}` // create standardized heading
 
         const person = await util.checkPerson(req); // get the session user
@@ -82,7 +82,6 @@ function socketHandler (socket, io, store) {
 
     socket.on('save_post', async (data) => {
 
-        console.log(data)
 
         if (!req.session.user) return io.to(socket.id).emit('save_post', 400);
 

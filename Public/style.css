@@ -515,7 +515,7 @@ span.emphasize {
     text-decoration: white underline;
 }
 
-button.save_button, button.save_button_invalid {
+button.save_button, button.saved_button, button.save_button_invalid {
     text-align: center;
     box-sizing: border-box;
     background: #ffffff00;
@@ -524,6 +524,17 @@ button.save_button, button.save_button_invalid {
     font-family: 'Glory', sans-serif;
     font-size: 20px;
     color: #ffffff;
+    padding: 5px
+}
+
+button.saved_button {
+    text-align: center;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 1px;
+    font-family: 'Glory', sans-serif;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
     padding: 5px
 }
 

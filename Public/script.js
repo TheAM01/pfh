@@ -231,13 +231,14 @@ function getFiles(socket) {
         let saveButton = document.getElementById('save_button');
 
         console.log(includes)
+
         if (includes === true) {
 
             saveButton.setAttribute('onclick', 'unsavePost(socket)')
-            saveButton.setAttribute('class', 'save_button')
+            saveButton.setAttribute('class', 'saved_button')
             saveButton.innerHTML = "Saved!"
 
-        } else if (!includes) {
+        } else if (includes === false) {
 
             console.log('xd')
 
@@ -268,7 +269,7 @@ function savePost(socket) {
         } else if (status === 200) {
             let saveButton = document.getElementById('save_button');
             saveButton.setAttribute('onclick', 'unsavePost(socket)')
-            saveButton.setAttribute('class', 'save_button')
+            saveButton.setAttribute('class', 'saved_button')
             saveButton.innerHTML = "Saved!"
         } else {
 
