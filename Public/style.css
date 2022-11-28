@@ -664,7 +664,7 @@ button#close_random_notes {
     padding: 5px;
     color: white;
     border: 0;
-    /*border-radius: 10px;*/
+    border-radius: 3px;
     margin: auto;
     box-sizing: border-box;
     display: none;
