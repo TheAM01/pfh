@@ -161,6 +161,18 @@ function socketHandler (socket, io, store) {
         io.to(socket.id).emit('request_sources', tableData)
     });
 
+    socket.on('random_notes', async () => {
+        const list = await db.get('list_theta');
+        const items = [
+            await db.get(list[Math.floor(Math.random() * list.length)].id),
+            await db.get(list[Math.floor(Math.random() * list.length)].id),
+            await db.get(list[Math.floor(Math.random() * list.length)].id)
+        ];
+
+        // console.log(items);
+        io.to(socket.id).emit('random_notes', items)
+    })
+
     socket.on('add_comment', (data) => {
         console.log(data)
     })

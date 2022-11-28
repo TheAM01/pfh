@@ -254,6 +254,45 @@ function getFiles(socket) {
 
 }
 
+function getRandomNotes(socket) {
+
+    const consent = getCookie('random_notes');
+    if (consent == 0) collapseRandomNotes()
+
+    socket.emit('random_notes');
+
+    socket.on('random_notes', (data) => {
+
+        const button = document.getElementById('close_random_notes')
+        const wrapper = document.getElementById('random_notes_wrapper');
+        const children = [];
+
+        for (let i = 0; i < data.length; i++) {
+
+            const item = data[i];
+
+            children.push(
+                `<div class="random_notes">
+                    <a href="${item.url}" class="random_notes_link">${item.grade} ${item.subject} ${item.name}: ${item.index}</a>
+                    <div class="random_notes_images_wrapper">
+                        ${forImgPush(item.images)}
+                    </div>
+                </div>
+
+                `
+            )
+
+
+        }
+
+        wrapper.innerHTML = children.join('\n')
+        button.setAttribute('onclick', 'collapseRandomNotes()')
+        button.style.display = 'inline'
+
+    })
+
+}
+
 function savePost(socket) {
 
     const path = new URL(window.location.href).pathname
@@ -349,4 +388,40 @@ function getCookie(cookieName) {
         }
     }
     return null;
+}
+
+function forImgPush(images) {
+    let arr = []
+    images.forEach((img, index) => {
+        arr.push(`<img src="${img}" class="random_notes_thumbnail_individual" id="slide-${index + 1}">`);
+    })
+    return arr.join('\n')
+}
+
+function collapseRandomNotes() {
+
+    const division = document.getElementById('random_notes_wrapper');
+    division.style.display = 'none';
+
+    const button = document.getElementById('close_random_notes')
+    button.style.display = 'inline'
+    button.innerHTML = 'Show random notes'
+    button.setAttribute('onclick', 'openRandomNotes()')
+
+    setCookie('random_notes', 0, 7)
+
+}
+
+function openRandomNotes() {
+
+    const division = document.getElementById('random_notes_wrapper');
+    division.style.display = 'inline';
+
+    const button = document.getElementById('close_random_notes')
+    button.style.display = 'inline'
+    button.innerHTML = 'Collapse'
+    button.setAttribute('onclick', 'collapseRandomNotes()')
+
+    setCookie('random_notes', 1, 7)
+
 }

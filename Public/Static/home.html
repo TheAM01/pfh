@@ -10,11 +10,6 @@
 
 <body>
 
-<!--    <div class="logo_container">-->
-<!--        <a class="logo_link" href="/">-->
-<!--            <b>PFH</b>: Parhle, Fail Hojayega-->
-<!--        </a>-->
-<!--    </div>-->
     <div class="open_nav_parent">
         <div class="open_nav" onclick="openNav()">
             &#9776;
@@ -53,20 +48,6 @@
         </a>
     </div>
 
-<!--    <div class="search_bar">-->
-<!--        <form action="/search" method="get" name="search" class="search">-->
-<!--            <input type="text" list="search_scope" class="search_input" placeholder="Search the website...">-->
-<!--            <datalist id="search_scope">-->
-<!--                <option value="XI Mathematics 1">-->
-<!--                <option value="XI Mathematics 2">-->
-<!--                <option value="XI Mathematics 3">-->
-<!--                <option value="XI Mathematics 4">-->
-<!--                <option value="XI Mathematics 5">-->
-<!--            </datalist>-->
-<!--            <input type="submit" value="Search" class="search_submit">-->
-<!--        </form>-->
-<!--    </div>-->
-
     <div class="workspace">
         <div class="intro_head">
             <h1>Home</h1>
@@ -90,6 +71,12 @@
                 <a href="/login">Log in</a> or <a href="/register">sign up</a> to get studying or continue without an account.
                 Our resources include Practical Centre, Adamjee Coaching and several others. Check <a href="/sources">our sources</a> for a list of sources from where we obtain notes.
             </p>
+
+            <button id="close_random_notes">Collapse</button>
+            <div class="random_notes_wrapper" id="random_notes_wrapper">
+                <img id='buffer' src="/cdn/buffering.png" alt="buffer">
+            </div>
+
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
@@ -99,6 +86,7 @@
         validatePerson(socket)
         socket.emit('test')
         socket.on('yes', () => console.log('YES!!'));
+        getRandomNotes(socket)
     </script>
 
     <div class="cookie_consent_box" id="cookie_consent_box">

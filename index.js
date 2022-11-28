@@ -66,7 +66,7 @@ server.listen(port, async () => {
     console.clear()
     console.log('Initializing...')
     console.log(`Listening on port ${port}.`);
-    // await onload()
+    await onload()
 
     // await mailWelcome({name: 'Abdul Mueed', username: 'TheAM', email: 'abdulmueedofficial@gmail.com'})
 
@@ -84,7 +84,7 @@ io.on('connection', async (socket) => {
 });
 
 async function onload () {
-
+    // console.log(await db.get('list_theta'))
     console.log('Done...')
 }
 
